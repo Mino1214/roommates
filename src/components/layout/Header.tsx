@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Home, Palette, Phone, Sparkles, ChevronRight } from 'lucide-react';
+import { Menu, X, Home, Palette, Phone } from 'lucide-react';
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-    const [hoveredItem, setHoveredItem] = useState(null);
+    const [hoveredItem, setHoveredItem] = useState<number | null>(null);
     const location = useLocation();
 
     // 스크롤 감지
@@ -43,7 +43,7 @@ export default function Header() {
         },
     ];
 
-    const isActive = (path) => location.pathname === path;
+    const isActive = (path: string) => location.pathname === path;
 
     return (
         <>
@@ -223,7 +223,7 @@ export default function Header() {
                 </div>
             </header>
 
-            <style jsx>{`
+            <style>{`
                 @keyframes fadeInUp {
                     from {
                         opacity: 0;
