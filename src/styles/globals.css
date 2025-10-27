@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 애니메이션 정의 */
+@keyframes blob {
+    0% {
+        transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+        transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+        transform: translate(0px, 0px) scale(1);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 20px rgba(168, 85, 247, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(168, 85, 247, 0);
+    }
+}
+
+/* 애니메이션 클래스 */
+.animate-blob {
+    animation: blob 7s infinite;
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+    animation: pulse-glow 2s infinite;
+}
+
+/* 애니메이션 딜레이 */
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+    animation-delay: 4s;
+}
+
+/* 블러 효과 */
+.backdrop-blur-xl {
+    backdrop-filter: blur(20px);
+}
+
+.backdrop-blur-sm {
+    backdrop-filter: blur(4px);
+}
+
+/* 그라데이션 애니메이션 */
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+}
+
+/* 호버 글로우 효과 */
+.hover-glow {
+    transition: all 0.3s ease;
+}
+
+.hover-glow:hover {
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+}
+
+/* 부드러운 트랜지션 */
+.transition-all {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition {
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+/* 믹스 블렌드 모드 */
+.mix-blend-multiply {
+    mix-blend-mode: multiply;
+}
+
+.mix-blend-screen {
+    mix-blend-mode: screen;
+}
+
+/* 텍스트 그라데이션 */
+.bg-clip-text {
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.text-transparent {
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+/* 스크롤 부드럽게 */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 커스텀 스크롤바 */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1e293b;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #a855f7, #ec4899);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #9333ea, #db2777);
+}
+
+/* 선택 영역 스타일 */
+::selection {
+    background: rgba(168, 85, 247, 0.3);
+    color: #ffffff;
+}
+
+/* 버튼 호버 효과 */
+.btn-hover {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-hover:hover::before {
+    left: 100%;
+}
