@@ -602,8 +602,9 @@
 //     );
 // }
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import {AnimatePresence, motion} from "framer-motion";
 import {Helmet} from "react-helmet-async";
+import EstimateWizard from "../components/ui/EstimateWizard.tsx";
 
 export default function TerminalBuildHero() {
     const [displayedLines, setDisplayedLines] = useState<string[]>([]);
@@ -611,7 +612,7 @@ export default function TerminalBuildHero() {
     const [lineIndex, setLineIndex] = useState(0);
     const [charIndex, setCharIndex] = useState(0);
     const [loop, setLoop] = useState(0);
-
+    const [showModal, setShowModal] = useState(false);
     const messages = [
         "> 아이디어 만 있다면?",
         "> 외주 신청",
@@ -731,34 +732,91 @@ export default function TerminalBuildHero() {
             </section>
 
             {/* ✅ 2️⃣ 다음 섹션 */}
-            <section className="relative h-screen w-full flex flex-col items-center justify-center snap-start bg-gradient-to-b from-[#f6f6f6] to-[#eaeaea] text-center text-[#111113]">
+            <section
+                className="relative h-screen w-full flex flex-col items-center justify-center snap-start bg-gradient-to-b from-[#f6f6f6] to-[#eaeaea] text-center text-[#111113]">
                 <motion.h1
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1 }}
-                    viewport={{ once: true }}
+                    initial={{opacity: 0, y: 40}}
+                    whileInView={{opacity: 1, y: 0}}
+                    transition={{duration: 1}}
+                    viewport={{once: true}}
                     className="text-6xl md:text-8xl font-black mb-8"
                 >
                     <span className="text-[#ff486f]">앱 · 웹</span> 개발해줘
                 </motion.h1>
                 <motion.p
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1.2, delay: 0.2 }}
-                    viewport={{ once: true }}
+                    initial={{opacity: 0, y: 30}}
+                    whileInView={{opacity: 1, y: 0}}
+                    transition={{duration: 1.2, delay: 0.2}}
+                    viewport={{once: true}}
                     className="text-gray-600 text-2xl md:text-3xl mb-12 leading-relaxed"
                 >
                     아이디어만 주세요.
-                    <br />실제 서비스로 만들어드릴게요.
+                    <br/>실제 서비스로 만들어드릴게요.
                 </motion.p>
                 <motion.button
-                    whileHover={{ scale: 1.07 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="px-12 py-5 bg-[#ff486f] text-white font-bold text-lg rounded-full shadow-[0_0_25px_#ff486f90]
-                   hover:shadow-[0_0_40px_#ff486fb0] transition-all duration-300"
+                    whileHover={{scale: 1.07}}
+                    whileTap={{scale: 0.95}}
+                    onClick={() => setShowModal(true)} // ✅ 모달 열기
+                    className="px-12 py-5 bg-[#ff486f] text-white font-bold text-lg rounded-full shadow-[0_0_25px_#ff486f90] hover:shadow-[0_0_40px_#ff486fb0] transition-all duration-300"
                 >
-                    프로젝트 시작하기 →
+                    간편 견적 →
                 </motion.button>
+
+                {/* ✅ 모달 */}
+                <AnimatePresence>
+                    {showModal && (
+                        <>
+                            {/* 배경 어둡게 */}
+                            <motion.div
+                                key="backdrop"
+                                initial={{opacity: 0}}
+                                animate={{opacity: 0.6}}
+                                exit={{opacity: 0}}
+                                className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40"
+                                onClick={() => setShowModal(false)} // 배경 클릭 시 닫기
+                            />
+
+                            {/* 중앙 모달 */}
+                            <motion.div
+                                key="modal"
+                                initial={{opacity: 0, y: 40, scale: 0.95}}
+                                animate={{opacity: 1, y: 0, scale: 1}}
+                                exit={{opacity: 0, y: 20, scale: 0.9}}
+                                transition={{duration: 0.4}}
+                                className="fixed inset-0 z-50 flex items-center justify-center px-4"
+                            >
+                                <div
+                                    className="relative bg-[#1a1a1a] rounded-2xl  max-w-lg w-full overflow-hidden">
+                                    {/* 닫기 버튼 */}
+                                    <button
+                                        onClick={() => setShowModal(false)}
+                                        className="absolute top-4 right-4 text-gray-600 hover:text-gray-400 text-2xl"
+                                    >
+                                        ✕
+                                    </button>
+
+                                    {/* 제목 */}
+                                    <div className="text-center pt-8 pb-4 border-b border-white/10">
+                                        <h2 className="text-2xl font-bold text-[#ff486f] tracking-tight">
+                                            빠른 견적 받기
+                                        </h2>
+                                        <p className="text-sm text-gray-400 mt-1">
+                                            몇 가지 질문에 답하면 맞춤 견적을 안내해드려요 💡
+                                        </p>
+                                    </div>
+
+                                    {/* EstimateWizard 삽입 */}
+                                    <EstimateWizard
+                                        onFinish={() => {
+                                            // alert("답변이 전송되었습니다! 감사합니다 💡");
+                                            setShowModal(false);
+                                        }}
+                                    />
+                                </div>
+                            </motion.div>
+                        </>
+                    )}
+                </AnimatePresence>
             </section>
         </div>
         </>
