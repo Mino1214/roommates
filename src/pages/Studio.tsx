@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import {Helmet} from "react-helmet-async";
 
 export default function Studio() {
     const navigate = useNavigate();
@@ -48,6 +49,26 @@ export default function Studio() {
         visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
     };
     return (
+        <><Helmet>
+            <title>포트폴리오 | ROOMMATES Studio</title>
+            <link rel="canonical" href="https://roomi.co.kr/studio" />
+            <meta name="description" content="실제 수행한 프로젝트와 결과물 — Roomi, ifdot, Evolution Quant 등" />
+            <meta property="og:title" content="포트폴리오 | ROOMMATES Studio" />
+            <meta property="og:description" content="스타트업과 브랜드를 위한 실제 작업물 모음" />
+            <meta property="og:image" content="https://roomfiles.s3.ap-northeast-2.amazonaws.com/uploads/image.png" />
+            <meta property="og:url" content="https://roomi.co.kr/studio" />
+            <meta name="twitter:card" content="summary_large_image" />
+            <script type="application/ld+json">{`
+          {
+            "@context":"https://schema.org",
+            "@type":"BreadcrumbList",
+            "itemListElement":[
+              {"@type":"ListItem","position":1,"name":"홈","item":"https://roomi.co.kr/"},
+              {"@type":"ListItem","position":2,"name":"포트폴리오","item":"https://roomi.co.krstudio"}
+            ]
+          }
+        `}</script>
+        </Helmet>
         <div className="h-screen snap-y snap-mandatory overflow-y-scroll text-white">
             {/* ✅ Hero Section */}
             <section
@@ -159,5 +180,6 @@ export default function Studio() {
                 </motion.button>
             </section>
         </div>
+        </>
     );
 }

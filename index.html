@@ -2,61 +2,83 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>룸메이트 | 스타트업 MVP 전문 개발사</title>
-  <meta name="description" content="주식회사 룸메이트 - 아이디어를 현실로 만드는 스타트업 전문 개발사. 2~4주 안에 MVP를 완성하고, 웹/앱/AI 솔루션까지 한 번에 구축합니다." />
-  <meta name="keywords" content="룸메이트, Roommate, 스타트업, MVP 개발, 앱 개발, 웹 개발, AI 솔루션, ifdot, Roomi" />
-  <meta name="author" content="주식회사 룸메이트 (Roommate Inc.)" />
+  <meta name="description" content="아이디어를 2~4주 안에 MVP로 구현하는 스타트업 전문 개발사. 웹/앱/AI까지 한 번에." />
+  <meta name="keywords" content="룸메이트, Roommates, 스타트업, MVP, 앱 개발, 웹 개발, AI, 포트폴리오, 견적" />
+  <meta name="author" content="ROOMMATES Studio" />
 
-  <!-- Open Graph (SNS 미리보기용) -->
+  <!-- 기본 OG (페이지별로 Helmet에서 재정의됨) -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="룸메이트 | 스타트업 MVP 전문 개발사" />
-  <meta property="og:description" content="아이디어를 2~4주 안에 MVP로 구현하는 스타트업 전문 개발사" />
-  <meta property="og:image" content="https://yourdomain.com/logo.png" />
-  <meta property="og:url" content="https://yourdomain.com" />
-  <meta property="og:site_name" content="주식회사 룸메이트" />
+  <meta property="og:description" content="아이디어를 2~4주 안에 MVP로 구현하는 스타트업 전문 개발사." />
+  <meta property="og:image" content="https://roomfiles.s3.ap-northeast-2.amazonaws.com/uploads/image.png" />
+  <meta property="og:url" content="https://roomi.co.kr" />
+  <meta property="og:site_name" content="ROOMMATES Studio" />
 
-  <!-- Twitter Card -->
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="룸메이트 | 스타트업 MVP 전문 개발사" />
-  <meta name="twitter:description" content="아이디어를 현실로 만드는 스타트업 전문 개발팀" />
-  <meta name="twitter:image" content="https://yourdomain.com/logo.png" />
+  <meta name="twitter:description" content="아이디어를 2~4주 안에 MVP로 구현" />
+  <meta name="twitter:image" content="https://roomfiles.s3.ap-northeast-2.amazonaws.com/uploads/image.png" />
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/logo.png" />
+  <!-- hreflang -->
+  <link rel="alternate" href="https://roomi.co.kr" hreflang="ko" />
+  <link rel="alternate" href="https://roomi.co.kr" hreflang="en" />
+  <link rel="alternate" href="https://roomi.co.kr" hreflang="x-default" />
 
-  <!-- 다국어 대응 -->
-  <link rel="alternate" href="https://yourdomain.com" hreflang="ko" />
-  <link rel="alternate" href="https://yourdomain.com/en" hreflang="en" />
-  <link rel="alternate" href="https://yourdomain.com/ja" hreflang="ja" />
-  <link rel="alternate" href="https://yourdomain.com" hreflang="x-default" />
-
-  <!-- Structured Data (Google에 사업정보 제공) -->
+  <!-- Organization -->
   <script type="application/ld+json">
     {
-      "@context": "https://schema.org",
-      "@type": "Organization",
-      "name": "주식회사 룸메이트",
-      "url": "https://yourdomain.com",
-      "logo": "https://yourdomain.com/logo.png",
-      "sameAs": [
+      "@context":"https://schema.org",
+      "@type":"Organization",
+      "name":"ROOMMATES Studio",
+      "url":"https://roomi.co.kr",
+      "logo":"https://roomfiles.s3.ap-northeast-2.amazonaws.com/uploads/image.png",
+      "sameAs":[
         "https://www.instagram.com/roommate.kr",
         "https://www.linkedin.com/company/roommate-inc"
       ],
-      "description": "스타트업을 위한 MVP 전문 개발사. 웹/앱/AI 프로젝트를 빠르게 완성합니다.",
-      "founder": "김민오",
-      "foundingDate": "2024-01-01",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+82-2-818-6385",
-        "contactType": "customer service",
-        "areaServed": "KR"
+      "contactPoint":{
+        "@type":"ContactPoint",
+        "telephone":"+82-10-9566-6385",
+        "contactType":"customer service",
+        "areaServed":"KR"
       }
     }
   </script>
-</head>
 
+  <!-- 🔥 SiteNavigationElement: 탭(사이트링크) 노출 유도 -->
+  <script type="application/ld+json">
+    {
+      "@context":"https://schema.org",
+      "@type":"ItemList",
+      "itemListElement":[
+        {
+          "@type":"SiteNavigationElement",
+          "position":1,
+          "name":"홈",
+          "url":"https://roomi.co.kr.com/"
+        },
+        {
+          "@type":"SiteNavigationElement",
+          "position":2,
+          "name":"포트폴리오",
+          "url":"https://roomi.co.kr/studio"
+        },
+        {
+          "@type":"SiteNavigationElement",
+          "position":3,
+          "name":"연락하기",
+          "url":"https://roomi.co.kr/contact"
+        }
+      ]
+    }
+  </script>
+
+  <link rel="icon" type="image/png" href="/logo.png" />
+</head>
 <body>
 <div id="root"></div>
 <script type="module" src="/src/main.tsx"></script>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Send } from "lucide-react";
 import { motion } from "framer-motion";
+import {Helmet} from "react-helmet-async";
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -54,6 +55,26 @@ export default function Contact() {
     };
 
     return (
+        <><Helmet>
+            <title>연락하기 | ROOMMATES Studio</title>
+            <link rel="canonical" href="https://roomi.co.kr/contact" />
+            <meta name="description" content="프로젝트 상담/견적 문의 — 빠르게 답변드립니다." />
+            <meta property="og:title" content="연락하기 | ROOMMATES Studio" />
+            <meta property="og:description" content="MVP/웹/앱/AI 개발 문의" />
+            <meta property="og:image" content="https://roomfiles.s3.ap-northeast-2.amazonaws.com/uploads/image.png" />
+            <meta property="og:url" content="https://roomi.co.kr/contact" />
+            <meta name="twitter:card" content="summary_large_image" />
+            <script type="application/ld+json">{`
+          {
+            "@context":"https://schema.org",
+            "@type":"BreadcrumbList",
+            "itemListElement":[
+              {"@type":"ListItem","position":1,"name":"홈","item":"https://roomi.co.kr/"},
+              {"@type":"ListItem","position":2,"name":"연락하기","item":"https://roomi.co.kr/contact"}
+            ]
+          }
+        `}</script>
+        </Helmet>
         <div className="min-h-screen bg-white text-gray-900">
             {/* ✅ Hero Section */}
             <section className="text-center py-20 bg-gray-50 border-b border-gray-200">
@@ -275,5 +296,6 @@ export default function Contact() {
                 </div>
             </section>
         </div>
+        </>
     );
 }
