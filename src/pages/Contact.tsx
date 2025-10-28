@@ -257,7 +257,7 @@ export default function Contact() {
                 {/* ✅ FAQ Section */}
 
                 {/*hidden md:block*/}
-                <footer className="snap-start h-auto min-h-[40vh]">
+                <footer className="hidden md:block snap-start h-auto min-h-[40vh]">
                     <Footer/>
                 </footer>
             </div>
