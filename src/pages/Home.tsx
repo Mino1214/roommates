@@ -605,6 +605,7 @@ import { useEffect, useState } from "react";
 import {AnimatePresence, motion} from "framer-motion";
 import {Helmet} from "react-helmet-async";
 import EstimateWizard from "../components/ui/EstimateWizard.tsx";
+import Footer from "../components/layout/Footer.tsx";
 
 export default function TerminalBuildHero() {
     const [displayedLines, setDisplayedLines] = useState<string[]>([]);
@@ -654,173 +655,267 @@ export default function TerminalBuildHero() {
             return () => clearTimeout(lineTimeout);
         }
     }, [charIndex, lineIndex, loop]);
-
+    const fadeUp = {
+        hidden: { opacity: 0, y: 40 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+    };
     return (
         <><Helmet>
             <title>룸메이트 | 스타트업 MVP 전문 개발사</title>
-            <link rel="canonical" href="https://roomi.co.kr/" />
-            <meta name="description" content="1~2주 내 MVP부터 웹/앱/AI까지 빠르게 구현하는 ROOMMATE Studio" />
-            <meta property="og:title" content="룸메이트 | 스타트업 MVP 전문 개발사" />
-            <meta property="og:description" content="아이디어를 빠르게 MVP로. 웹/앱/AI 한 번에." />
-            <meta property="og:image" content="https://roomfiles.s3.ap-northeast-2.amazonaws.com/uploads/image.png" />
-            <meta property="og:url" content="https://roomi.co.kr/" />
-            <meta name="twitter:card" content="summary_large_image" />
+            <link rel="canonical" href="https://roomi.co.kr/"/>
+            <meta name="description" content="1~2주 내 MVP부터 웹/앱/AI까지 빠르게 구현하는 ROOMMATE Studio"/>
+            <meta property="og:title" content="룸메이트 | 스타트업 MVP 전문 개발사"/>
+            <meta property="og:description" content="아이디어를 빠르게 MVP로. 웹/앱/AI 한 번에."/>
+            <meta property="og:image" content="https://roomfiles.s3.ap-northeast-2.amazonaws.com/uploads/image.png"/>
+            <meta property="og:url" content="https://roomi.co.kr/"/>
+            <meta name="twitter:card" content="summary_large_image"/>
         </Helmet>
-        <div
-            className="w-full h-screen overflow-y-scroll overflow-x-hidden snap-y snap-mandatory
+            <div
+                className="w-full h-screen overflow-y-scroll overflow-x-hidden snap-y snap-mandatory
                bg-gradient-to-b from-[#111113] to-[#1a1a1d] text-white"
-        >
-            {/* ✅ 1️⃣ 첫 섹션 */}
-            <section className="relative h-screen w-full flex flex-col items-center justify-center snap-start">
-                {/* 배경 glow */}
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#ff486f20,transparent_70%)]" />
+            >
+                {/* ✅ 1️⃣ 첫 섹션 */}
+                <section className="relative h-screen w-full flex flex-col items-center justify-center snap-start">
+                    {/* 배경 glow */}
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#ff486f20,transparent_70%)]"/>
 
-                {/* CMD 스타일 터미널 창 */}
-                <motion.div
-                    key={loop}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="relative bg-white text-[#111113] w-[90%] max-w-3xl rounded-lg shadow-[0_0_40px_#ff486f30]
+                    {/* CMD 스타일 터미널 창 */}
+                    <motion.div
+                        key={loop}
+                        initial={{opacity: 0, y: 20}}
+                        animate={{opacity: 1, y: 0}}
+                        transition={{duration: 0.8}}
+                        className="relative bg-white text-[#111113] w-[90%] max-w-3xl rounded-lg shadow-[0_0_40px_#ff486f30]
                    border border-[#111113]/20 font-mono overflow-hidden"
-                >
-                    {/* 윈도우 스타일 상단 바 */}
-                    <div className="flex items-center gap-2 px-4 py-2 bg-[#f5f5f5] border-b border-[#e0e0e0]">
-                        <div className="w-3 h-3 bg-[#ff5f56] rounded-full"></div>
-                        <div className="w-3 h-3 bg-[#ffbd2e] rounded-full"></div>
-                        <div className="w-3 h-3 bg-[#27c93f] rounded-full"></div>
-                        <span className="ml-3 text-gray-500 text-sm select-none">Roommate.exe</span>
-                    </div>
-
-                    {/* 내용 */}
-                    <div className="p-6 md:p-8 min-h-[220px]">
-                        {displayedLines.map((line, i) => (
-                            <p key={i} className="whitespace-pre text-sm md:text-lg mb-1 tracking-tight">
-                                {line}
-                            </p>
-                        ))}
-                        <p className="whitespace-pre text-sm md:text-lg tracking-tight inline">
-                            {currentText}
-                            <motion.span
-                                className="inline-block w-3 h-5 bg-[#ff486f] ml-1"
-                                animate={{ opacity: [0, 1, 0] }}
-                                transition={{ repeat: Infinity, duration: 1 }}
-                            />
-                        </p>
-                    </div>
-                </motion.div>
-
-                {/* 🔽 스크롤 유도 */}
-                <motion.div
-                    initial={{ opacity: 0, y: 0 }}
-                    animate={{ opacity: [0, 1, 0], y: [0, 10, 0] }}
-                    transition={{ repeat: Infinity, duration: 2 }}
-                    className="absolute bottom-6 text-gray-400 text-sm flex flex-col items-center"
-                >
-                    <span className="mb-2">더 알아보기</span>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={2}
-                        stroke="currentColor"
-                        className="w-6 h-6"
                     >
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </motion.div>
-            </section>
+                        {/* 윈도우 스타일 상단 바 */}
+                        <div className="flex items-center gap-2 px-4 py-2 bg-[#f5f5f5] border-b border-[#e0e0e0]">
+                            <div className="w-3 h-3 bg-[#ff5f56] rounded-full"></div>
+                            <div className="w-3 h-3 bg-[#ffbd2e] rounded-full"></div>
+                            <div className="w-3 h-3 bg-[#27c93f] rounded-full"></div>
+                            <span className="ml-3 text-gray-500 text-sm select-none">Roommate.exe</span>
+                        </div>
 
-            {/* ✅ 2️⃣ 다음 섹션 */}
-            <section
-                className="relative h-screen w-full flex flex-col items-center justify-center snap-start bg-gradient-to-b from-[#f6f6f6] to-[#eaeaea] text-center text-[#111113]">
-                <motion.h1
-                    initial={{opacity: 0, y: 40}}
-                    whileInView={{opacity: 1, y: 0}}
-                    transition={{duration: 1}}
-                    viewport={{once: true}}
-                    className="text-6xl md:text-8xl font-black mb-8"
-                >
-                    <span className="text-[#ff486f]">앱 · 웹</span> 개발해줘
-                </motion.h1>
-                <motion.p
-                    initial={{opacity: 0, y: 30}}
-                    whileInView={{opacity: 1, y: 0}}
-                    transition={{duration: 1.2, delay: 0.2}}
-                    viewport={{once: true}}
-                    className="text-gray-600 text-2xl md:text-3xl mb-12 leading-relaxed"
-                >
-                    아이디어만 주세요.
-                    <br/>실제 서비스로 만들어드릴게요.
-                </motion.p>
-                <motion.button
-                    whileHover={{scale: 1.07}}
-                    whileTap={{scale: 0.95}}
-                    onClick={() => setShowModal(true)} // ✅ 모달 열기
-                    className="px-12 py-5 bg-[#ff486f] text-white font-bold text-lg rounded-full shadow-[0_0_25px_#ff486f90] hover:shadow-[0_0_40px_#ff486fb0] transition-all duration-300"
-                >
-                    간편 견적 →
-                </motion.button>
+                        {/* 내용 */}
+                        <div className="p-6 md:p-8 min-h-[220px]">
+                            {displayedLines.map((line, i) => (
+                                <p key={i} className="whitespace-pre text-sm md:text-lg mb-1 tracking-tight">
+                                    {line}
+                                </p>
+                            ))}
+                            <p className="whitespace-pre text-sm md:text-lg tracking-tight inline">
+                                {currentText}
+                                <motion.span
+                                    className="inline-block w-3 h-5 bg-[#ff486f] ml-1"
+                                    animate={{opacity: [0, 1, 0]}}
+                                    transition={{repeat: Infinity, duration: 1}}
+                                />
+                            </p>
+                        </div>
+                    </motion.div>
 
-                {/* ✅ 모달 */}
-                <AnimatePresence>
-                    {showModal && (
-                        <>
-                            {/* 배경 어둡게 */}
-                            <motion.div
-                                key="backdrop"
-                                initial={{opacity: 0}}
-                                animate={{opacity: 0.6}}
-                                exit={{opacity: 0}}
-                                className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40"
-                                onClick={() => setShowModal(false)} // 배경 클릭 시 닫기
-                            />
+                    {/* 🔽 스크롤 유도 */}
+                    <motion.div
+                        initial={{opacity: 0, y: 0}}
+                        animate={{opacity: [0, 1, 0], y: [0, 10, 0]}}
+                        transition={{repeat: Infinity, duration: 2}}
+                        className="absolute bottom-6 text-gray-400 text-sm flex flex-col items-center"
+                    >
+                        <span className="mb-2">더 알아보기</span>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={2}
+                            stroke="currentColor"
+                            className="w-6 h-6"
+                        >
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </motion.div>
+                </section>
 
-                            {/* 중앙 모달 */}
-                            <motion.div
-                                key="modal"
-                                initial={{opacity: 0, y: 40, scale: 0.95}}
-                                animate={{opacity: 1, y: 0, scale: 1}}
-                                exit={{opacity: 0, y: 20, scale: 0.9}}
-                                transition={{duration: 0.4}}
-                                className="fixed inset-0 z-50 flex items-center justify-center px-4"
-                            >
-                                <div
-                                    className="relative bg-[#1a1a1a] rounded-2xl  max-w-lg w-full overflow-hidden">
-                                    {/* 닫기 버튼 */}
-                                    <button
-                                        onClick={() => setShowModal(false)}
-                                        className="absolute top-4 right-4 text-gray-600 hover:text-gray-400 text-2xl"
-                                    >
-                                        ✕
-                                    </button>
+                {/* ✅ 2️⃣ 다음 섹션 */}
+                <section className="relative h-screen w-full flex flex-col items-center justify-center snap-start bg-gradient-to-b from-[#f6f6f6] to-[#eaeaea] text-center text-[#111113]">
+                    <motion.h1
+                        initial={{opacity: 0, y: 40}}
+                        whileInView={{opacity: 1, y: 0}}
+                        transition={{duration: 1}}
+                        viewport={{once: true}}
+                        className="text-6xl md:text-8xl font-black mb-8"
+                    >
+                        <span className="text-[#ff486f]">앱 · 웹</span> 개발해줘
+                    </motion.h1>
+                    <motion.p
+                        initial={{opacity: 0, y: 30}}
+                        whileInView={{opacity: 1, y: 0}}
+                        transition={{duration: 1.2, delay: 0.2}}
+                        viewport={{once: true}}
+                        className="text-gray-600 text-2xl md:text-3xl mb-12 leading-relaxed"
+                    >
+                        아이디어만 주세요.
+                        <br/>실제 서비스로 만들어드릴게요.
+                    </motion.p>
+                    <motion.button
+                        whileHover={{scale: 1.07}}
+                        whileTap={{scale: 0.95}}
+                        onClick={() => setShowModal(true)} // ✅ 모달 열기
+                        className="px-12 py-5 bg-[#ff486f] text-white font-bold text-lg rounded-full shadow-[0_0_25px_#ff486f90] hover:shadow-[0_0_40px_#ff486fb0] transition-all duration-300"
+                    >
+                        견적 받아보기 →
+                    </motion.button>
 
-                                    {/* 제목 */}
-                                    <div className="text-center pt-8 pb-4 border-b border-white/10">
-                                        <h2 className="text-2xl font-bold text-[#ff486f] tracking-tight">
-                                            빠른 견적 받기
-                                        </h2>
-                                        <p className="text-sm text-gray-400 mt-1">
-                                            몇 가지 질문에 답하면 맞춤 견적을 안내해드려요 💡
-                                        </p>
+                    {/* ✅ 모달 */}
+                    <AnimatePresence>
+                        {showModal && (
+                            <>
+                                {/* 배경 어둡게 */}
+                                <motion.div
+                                    key="backdrop"
+                                    initial={{opacity: 0}}
+                                    animate={{opacity: 0.6}}
+                                    exit={{opacity: 0}}
+                                    className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40"
+                                    onClick={() => setShowModal(false)} // 배경 클릭 시 닫기
+                                />
+
+                                {/* 중앙 모달 */}
+                                <motion.div
+                                    key="modal"
+                                    initial={{opacity: 0, y: 40, scale: 0.95}}
+                                    animate={{opacity: 1, y: 0, scale: 1}}
+                                    exit={{opacity: 0, y: 20, scale: 0.9}}
+                                    transition={{duration: 0.4}}
+                                    className="fixed inset-0 z-50 flex items-center justify-center px-4"
+                                >
+                                    <div
+                                        className="relative bg-[#1a1a1a] rounded-2xl  max-w-lg w-full overflow-hidden">
+                                        {/* 닫기 버튼 */}
+                                        <button
+                                            onClick={() => setShowModal(false)}
+                                            className="absolute top-4 right-4 text-gray-600 hover:text-gray-400 text-2xl"
+                                        >
+                                            ✕
+                                        </button>
+
+                                        {/* 제목 */}
+                                        <div className="text-center pt-8 pb-4 border-b border-white/10">
+                                            <h2 className="text-2xl font-bold text-[#ff486f] tracking-tight">
+                                                빠른 견적 받기
+                                            </h2>
+                                            <p className="text-sm text-gray-400 mt-1">
+                                                몇 가지 질문에 답하면 맞춤 견적을 안내해드려요 💡
+                                            </p>
+                                        </div>
+
+                                        {/* EstimateWizard 삽입 */}
+                                        <EstimateWizard
+                                            onFinish={() => {
+                                                // alert("답변이 전송되었습니다! 감사합니다 💡");
+                                                setShowModal(false);
+                                            }}
+                                        />
                                     </div>
+                                </motion.div>
+                            </>
+                        )}
+                    </AnimatePresence>
+                </section>
 
-                                    {/* EstimateWizard 삽입 */}
-                                    <EstimateWizard
-                                        onFinish={() => {
-                                            // alert("답변이 전송되었습니다! 감사합니다 💡");
-                                            setShowModal(false);
-                                        }}
-                                    />
-                                </div>
+                {/* ✅ FAQ Section */}
+                <section className="relative min-h-screen w-full flex flex-col items-center justify-center snap-start bg-[#f9f9f9] text-[#111113] px-4 sm:px-6 py-20">
+                    <motion.div
+                        className="container mx-auto text-center mb-12"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true }}
+                        variants={fadeUp}
+                    >
+                        <h2 className="text-3xl md:text-4xl font-black mb-3 text-[#111113]">
+                            자주 묻는 질문
+                        </h2>
+                        <p className="text-gray-500 text-base md:text-lg">
+                            개발 전 꼭 알아두면 좋은 내용들을 모았습니다.
+                        </p>
+                    </motion.div>
+
+                    {/* FAQ Cards */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 container mx-auto max-w-6xl">
+                        {[
+                            {
+                                q: "Roomi Studio는 어떤 서비스를 제공하나요?",
+                                a: "아이디어만 있어도 시작할 수 있는 MVP 개발 전문 서비스입니다. 웹, 앱, AI 등 빠르게 실행 가능한 프로토타입을 제작해드립니다.",
+                            },
+                            {
+                                q: "상담은 어떻게 진행되나요?",
+                                a: "‘간편 견적’ 버튼을 눌러 간단히 정보를 남겨주시면, 담당자가 1영업일 내로 직접 연락드립니다.",
+                            },
+                            {
+                                q: "견적은 무료인가요?",
+                                a: "네, 무료로 상담과 견적을 제공합니다. 프로젝트 방향이 확정되기 전까지는 어떠한 비용도 발생하지 않습니다.",
+                            },
+                            {
+                                q: "개발 기간은 얼마나 걸리나요?",
+                                a: "일반적인 MVP 기준으로 약 2~4주 내 완성됩니다. 기능 복잡도에 따라 조정이 가능하며, 주 단위로 진행 상황을 공유합니다.",
+                            },
+                            {
+                                q: "디자인까지 포함되나요?",
+                                a: "네, 기획·디자인·개발까지 모두 포함된 올인원 패키지를 제공합니다. 디자인만 별도로 진행하는 것도 가능합니다.",
+                            },
+                            {
+                                q: "런칭 후 유지보수는 어떻게 되나요?",
+                                a: "배포 후 6개월간 무료 버그 수정 및 안정화 지원을 제공합니다. 이후에도 정기 유지보수 또는 개선 계약이 가능합니다.",
+                            },
+                            {
+                                q: "기존 프로젝트를 이어서 맡길 수 있나요?",
+                                a: "네, 가능합니다. 기존 소스코드나 디자인 시안을 검토 후 빠르게 이어받아 진행할 수 있습니다.",
+                            },
+                            {
+                                q: "계약은 어떤 방식으로 진행되나요?",
+                                a: "상담 후 확정 견적서를 발행하고 전자 서명으로 계약합니다. 이후 바로 개발이 시작됩니다.",
+                            },
+                            {
+                                q: "비용은 어느 정도인가요?",
+                                a: "간단한 MVP는 200만 원대부터 시작하며, 요구 기능에 따라 유연하게 맞춤 견적을 드립니다.",
+                            },
+                            // {
+                            //     q: "긴급 프로젝트도 가능한가요?",
+                            //     a: "네. 일정에 따라 최대한 빠르게 착수할 수 있으며, 평균적으로 24시간 내 착수 여부를 안내드립니다.",
+                            // },
+                        ].map((faq, index) => (
+                            <motion.div
+                                key={index}
+                                className="group p-6 sm:p-7 rounded-2xl bg-white border border-gray-200 hover:shadow-[0_0_15px_rgba(255,72,111,0.15)] hover:border-[#ff486f40] transition-all duration-300"
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true }}
+                                variants={fadeUp}
+                            >
+                                <h4 className="font-semibold text-lg md:text-xl text-gray-900 mb-2 group-hover:text-[#ff486f] transition-colors">
+                                    {faq.q}
+                                </h4>
+                                <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+                                    {faq.a}
+                                </p>
                             </motion.div>
-                        </>
-                    )}
-                </AnimatePresence>
-            </section>
+                        ))}
+                    </div>
+                </section>
+                {/*hidden md:block*/}
+                <footer className="snap-start h-auto min-h-[40vh]">
+                    <Footer/>
+                </footer>
+                {/* ✅ floating button 추가 */}
+                <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setShowModal(true)}
+                    className="fixed bottom-6 right-6 z-50 px-6 py-4 bg-[#ff486f] text-white font-bold rounded-full shadow-[0_0_25px_#ff486f70] hover:shadow-[0_0_40px_#ff486fb0] transition-all duration-300 flex items-center gap-2"
+                >
+                    간편 견적
+                </motion.button>
+            </div>
 
-
-        </div>
         </>
     );
 }

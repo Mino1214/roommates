@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import {Helmet} from "react-helmet-async";
+import Footer from "../components/layout/Footer.tsx";
 
 export default function Studio() {
     const navigate = useNavigate();
@@ -69,117 +70,124 @@ export default function Studio() {
           }
         `}</script>
         </Helmet>
-        <div className="h-screen snap-y snap-mandatory overflow-y-scroll text-white">
-            {/* ✅ Hero Section */}
-            <section
-                className="relative flex flex-col items-center justify-center text-center px-6 min-h-screen snap-start bg-gradient-to-b from-[#111113] to-[#1a1a1d]">
-                <motion.div initial="hidden" animate="visible" variants={fadeUp}>
-                    <h1 className="text-5xl md:text-7xl font-black mb-6">
-                        Our <span className="text-[#ff486f]">Portfolio</span>
-                    </h1>
-                    <p className="text-gray-400 text-xl md:text-2xl mb-10">
-                        우리가 만들어온 서비스, 당신의 아이디어가 될 수 있습니다.
+            <div className="h-screen snap-y snap-mandatory overflow-y-scroll text-white">
+                {/* ✅ Hero Section */}
+                <section
+                    className="relative flex flex-col items-center justify-center text-center px-6 min-h-screen snap-start bg-gradient-to-b from-[#111113] to-[#1a1a1d]">
+                    <motion.div initial="hidden" animate="visible" variants={fadeUp}>
+                        <h1 className="text-5xl md:text-7xl font-black mb-6">
+                            Our <span className="text-[#ff486f]">Portfolio</span>
+                        </h1>
+                        <p className="text-gray-400 text-xl md:text-2xl mb-10">
+                            우리가 만들어온 서비스, 당신의 아이디어가 될 수 있습니다.
+                        </p>
+                        <motion.button
+                            whileHover={{scale: 1.07}}
+                            whileTap={{scale: 0.95}}
+                            onClick={() => navigate("/contact")}
+                            className="px-10 py-4 bg-[#ff486f] text-white font-semibold rounded-full shadow-[0_0_30px_#ff486f70] hover:shadow-[0_0_45px_#ff486fb0] transition-all duration-300"
+                        >
+                            프로젝트 문의하기 →
+                        </motion.button>
+                    </motion.div>
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#ff486f20,transparent_70%)]"/>
+                </section>
+
+                {/* ✅ Projects Section */}
+                <section
+                    className="relative min-h-screen snap-start flex flex-col justify-center bg-[#1a1a1d] py-16 px-6">
+                    <motion.div
+                        className="text-center mb-12"
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{once: true}}
+                        variants={fadeUp}
+                    >
+                        <h2 className="text-4xl font-black mb-3">
+                            Recent <span className="text-[#ff486f]">Works</span>
+                        </h2>
+                        <p className="text-gray-400 text-lg">
+                            스타트업과 브랜드를 위한 우리의 프로젝트를 소개합니다.
+                        </p>
+                    </motion.div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 container mx-auto">
+                        {projects.map((project, index) => (
+                            <motion.div
+                                key={index}
+                                initial={{opacity: 0, y: 20}}
+                                whileInView={{opacity: 1, y: 0}}
+                                transition={{duration: 0.5, delay: index * 0.1}}
+                                viewport={{once: true}}
+                                className="group bg-[#18181b] rounded-2xl border border-[#2e2e32] overflow-hidden hover:shadow-[0_0_40px_#ff486f50] transition-all duration-500"
+                            >
+                                <img
+                                    src={project.image}
+                                    alt={project.title}
+                                    className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"
+                                />
+                                <div className="p-6">
+                                    <h3 className="font-bold text-xl mb-2 text-white">{project.title}</h3>
+                                    <p className="text-gray-400 mb-4 text-sm leading-relaxed">
+                                        {project.desc}
+                                    </p>
+                                    <div className="flex flex-wrap gap-2">
+                                        {project.tags.map((tag, i) => (
+                                            <span
+                                                key={i}
+                                                className="px-3 py-1 text-xs rounded-full bg-[#ff486f20] text-[#ff486f] border border-[#ff486f40]"
+                                            >
+                      {tag}
+                    </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* ✅ CTA Section */}
+                {/*<section className="min-h-screen snap-start flex flex-col items-center justify-center bg-[#0b0b0c] text-center">*/}
+                {/*    <h2 className="text-4xl md:text-5xl font-black mb-6">*/}
+                {/*        당신의 <span className="text-[#ff486f]">아이디어</span>를 실현할 차례입니다.*/}
+                {/*    </h2>*/}
+                {/*    <p className="text-gray-400 mb-10 text-lg">*/}
+                {/*        단순한 외주가 아니라, 함께 성장하는 파트너십을 제공합니다.*/}
+                {/*    </p>*/}
+                {/*    <motion.button*/}
+                {/*        whileHover={{ scale: 1.07 }}*/}
+                {/*        whileTap={{ scale: 0.95 }}*/}
+                {/*        onClick={() => navigate("/contact")}*/}
+                {/*        className="px-10 py-4 bg-[#ff486f] text-white font-bold rounded-full shadow-[0_0_30px_#ff486f70] hover:shadow-[0_0_50px_#ff486fb0] transition-all duration-300"*/}
+                {/*    >*/}
+                {/*        상담 신청하기 →*/}
+                {/*    </motion.button>*/}
+                {/*</section>*/}
+
+                <section
+                    className="min-h-screen snap-start flex flex-col items-center justify-center bg-white text-center">
+                    <h2 className="text-4xl md:text-5xl font-black mb-6 text-gray-900">
+                        당신의 <span className="text-[#ff486f]">아이디어</span>를 실현할 차례입니다.
+                    </h2>
+                    <p className="text-gray-600 mb-10 text-lg">
+                        단순한 외주가 아니라, 함께 성장하는 파트너십을 제공합니다.
                     </p>
                     <motion.button
                         whileHover={{scale: 1.07}}
                         whileTap={{scale: 0.95}}
                         onClick={() => navigate("/contact")}
-                        className="px-10 py-4 bg-[#ff486f] text-white font-semibold rounded-full shadow-[0_0_30px_#ff486f70] hover:shadow-[0_0_45px_#ff486fb0] transition-all duration-300"
+                        className="px-10 py-4 bg-[#ff486f] text-white font-bold rounded-full shadow-[0_0_25px_#ff486f50] hover:shadow-[0_0_40px_#ff486f90] transition-all duration-300"
                     >
-                        프로젝트 문의하기 →
+                        상담 신청하기 →
                     </motion.button>
-                </motion.div>
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#ff486f20,transparent_70%)]"/>
-            </section>
 
-            {/* ✅ Projects Section */}
-            <section className="relative min-h-screen snap-start flex flex-col justify-center bg-[#1a1a1d] py-16 px-6">
-                <motion.div
-                    className="text-center mb-12"
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{once: true}}
-                    variants={fadeUp}
-                >
-                    <h2 className="text-4xl font-black mb-3">
-                        Recent <span className="text-[#ff486f]">Works</span>
-                    </h2>
-                    <p className="text-gray-400 text-lg">
-                        스타트업과 브랜드를 위한 우리의 프로젝트를 소개합니다.
-                    </p>
-                </motion.div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 container mx-auto">
-                    {projects.map((project, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{opacity: 0, y: 20}}
-                            whileInView={{opacity: 1, y: 0}}
-                            transition={{duration: 0.5, delay: index * 0.1}}
-                            viewport={{once: true}}
-                            className="group bg-[#18181b] rounded-2xl border border-[#2e2e32] overflow-hidden hover:shadow-[0_0_40px_#ff486f50] transition-all duration-500"
-                        >
-                            <img
-                                src={project.image}
-                                alt={project.title}
-                                className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"
-                            />
-                            <div className="p-6">
-                                <h3 className="font-bold text-xl mb-2 text-white">{project.title}</h3>
-                                <p className="text-gray-400 mb-4 text-sm leading-relaxed">
-                                    {project.desc}
-                                </p>
-                                <div className="flex flex-wrap gap-2">
-                                    {project.tags.map((tag, i) => (
-                                        <span
-                                            key={i}
-                                            className="px-3 py-1 text-xs rounded-full bg-[#ff486f20] text-[#ff486f] border border-[#ff486f40]"
-                                        >
-                      {tag}
-                    </span>
-                                    ))}
-                                </div>
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
-            </section>
-
-            {/* ✅ CTA Section */}
-            {/*<section className="min-h-screen snap-start flex flex-col items-center justify-center bg-[#0b0b0c] text-center">*/}
-            {/*    <h2 className="text-4xl md:text-5xl font-black mb-6">*/}
-            {/*        당신의 <span className="text-[#ff486f]">아이디어</span>를 실현할 차례입니다.*/}
-            {/*    </h2>*/}
-            {/*    <p className="text-gray-400 mb-10 text-lg">*/}
-            {/*        단순한 외주가 아니라, 함께 성장하는 파트너십을 제공합니다.*/}
-            {/*    </p>*/}
-            {/*    <motion.button*/}
-            {/*        whileHover={{ scale: 1.07 }}*/}
-            {/*        whileTap={{ scale: 0.95 }}*/}
-            {/*        onClick={() => navigate("/contact")}*/}
-            {/*        className="px-10 py-4 bg-[#ff486f] text-white font-bold rounded-full shadow-[0_0_30px_#ff486f70] hover:shadow-[0_0_50px_#ff486fb0] transition-all duration-300"*/}
-            {/*    >*/}
-            {/*        상담 신청하기 →*/}
-            {/*    </motion.button>*/}
-            {/*</section>*/}
-
-            <section className="min-h-screen snap-start flex flex-col items-center justify-center bg-white text-center">
-                <h2 className="text-4xl md:text-5xl font-black mb-6 text-gray-900">
-                    당신의 <span className="text-[#ff486f]">아이디어</span>를 실현할 차례입니다.
-                </h2>
-                <p className="text-gray-600 mb-10 text-lg">
-                    단순한 외주가 아니라, 함께 성장하는 파트너십을 제공합니다.
-                </p>
-                <motion.button
-                    whileHover={{scale: 1.07}}
-                    whileTap={{scale: 0.95}}
-                    onClick={() => navigate("/contact")}
-                    className="px-10 py-4 bg-[#ff486f] text-white font-bold rounded-full shadow-[0_0_25px_#ff486f50] hover:shadow-[0_0_40px_#ff486f90] transition-all duration-300"
-                >
-                    상담 신청하기 →
-                </motion.button>
-            </section>
-        </div>
+                </section>
+                {/*hidden md:block*/}
+                <footer className="snap-start h-auto min-h-[40vh]">
+                    <Footer/>
+                </footer>
+            </div>
         </>
     );
 }

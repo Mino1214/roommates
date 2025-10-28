@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Studio from "./pages/Studio";
 import Contact from "./pages/Contact";
-import Footer from "./components/layout/Footer";
+
 import Header from "./components/layout/Header";
 import Home from "./pages/Home";
 
@@ -29,10 +29,7 @@ export default function App() {
                         </Routes>
                     </main>
 
-                    {/* ✅ PC에서만 보이는 Footer (모바일 숨김) */}
-                    <footer className="hidden md:block">
-                        <Footer />
-                    </footer>
+
                 </div>
             </Router>
         </HelmetProvider>
