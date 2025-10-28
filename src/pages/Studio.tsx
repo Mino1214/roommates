@@ -1,197 +1,163 @@
-import { Code, Clock, Zap, CheckCircle } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+
 export default function Studio() {
     const navigate = useNavigate();
-    const services = [
-        {
-            icon: Code,
-            title: 'Full Stack Development',
-            description: 'React, Node.js, Python 등 최신 기술 스택을 활용한 개발',
-            price: '저렴한 가격',
-        },
-        {
-            icon: Clock,
-            title: 'Rapid Development',
-            description: '빠른 개발 주기로 아이디어를 빠르게 실현',
-            price: '탁월한 효율',
-        },
-        {
-            icon: Zap,
-            title: 'MVP Excellence',
-            description: 'MVP부터 프로덕션까지 완벽한 파트너십',
-            price: '확장 가능',
-        },
-    ];
 
-    const benefits = [
-        '경험 많은 개발팀과 빠른 상담',
-        '비용 효율적인 개발 프로세스',
-        '품질 보증 및 기술 지원',
-        '민첩한 개발 방식 (Agile)',
-        '완벽한 문서화',
-        '24/7 기술 지원',
+    const projects = [
+        {
+            image: "https://placehold.co/600x400",
+            title: "Roomi – 단기거주 플랫폼",
+            desc: "숙박과 공간 대여를 연결하는 글로벌 단기거주 서비스",
+            tags: ["Flutter", "NestJS", "MariaDB"],
+        },
+        {
+            image: "https://placehold.co/600x400",
+            title: "ifdot – 뷰티 예약 플랫폼",
+            desc: "K-Beauty 전문가와 고객을 연결하는 예약 시스템",
+            tags: ["Next.js", "Prisma", "AWS"],
+        },
+        {
+            image: "https://placehold.co/600x400",
+            title: "Evolution Quant",
+            desc: "AI 기반 1분 스캘핑 자동매매 시스템",
+            tags: ["Python", "TensorFlow", "Binance API"],
+        },
+        {
+            image: "https://placehold.co/600x400",
+            title: "Roomi Admin Panel",
+            desc: "호스트 승인, 정산, CS 대응을 위한 관리자 페이지",
+            tags: ["React", "Node.js", "MySQL"],
+        },
+        {
+            image: "https://placehold.co/600x400",
+            title: "ifdot Marketing Dashboard",
+            desc: "마케팅 트래킹 및 고객 분석용 웹 대시보드",
+            tags: ["React", "Recharts", "TypeScript"],
+        },
+        {
+            image: "https://placehold.co/600x400", // 임시 이미지 링크
+            title: "cleanupsystems.shop – 임직원 복지몰",
+            desc: "임직원 전용 복지몰 플랫폼 구축 프로젝트",
+            tags: ["Shopify", "Headless CMS", "K-benefit"]
+        }
     ];
 
     const fadeUp = {
         hidden: { opacity: 0, y: 40 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
     };
-
     return (
-        <div className="min-h-screen bg-white text-gray-900">
+        <div className="h-screen snap-y snap-mandatory overflow-y-scroll text-white">
             {/* ✅ Hero Section */}
-            <section className="text-center py-20 bg-gray-50 border-b border-gray-200">
-                <motion.div
-                    className="container mx-auto"
-                    initial="hidden"
-                    animate="visible"
-                    variants={fadeUp}
-                >
-                    <h1 className="text-4xl md:text-6xl font-black text-[#ff486f] mb-4">
-                        Roommates Studio
+            <section
+                className="relative flex flex-col items-center justify-center text-center px-6 min-h-screen snap-start bg-gradient-to-b from-[#111113] to-[#1a1a1d]">
+                <motion.div initial="hidden" animate="visible" variants={fadeUp}>
+                    <h1 className="text-5xl md:text-7xl font-black mb-6">
+                        Our <span className="text-[#ff486f]">Portfolio</span>
                     </h1>
-                    <p className="text-lg md:text-xl text-gray-600 mb-6">
-                        스타트업을 위한 빠르고 효율적인 MVP 개발 서비스
+                    <p className="text-gray-400 text-xl md:text-2xl mb-10">
+                        우리가 만들어온 서비스, 당신의 아이디어가 될 수 있습니다.
                     </p>
-                    <p className="text-gray-500 max-w-2xl mx-auto mb-10">
-                        당신의 아이디어를 현실로 만드는 개발 파트너. 합리적인 비용으로 빠르고 안정적인 결과를 제공합니다.
-                    </p>
-                    <button
-                        onClick={() => navigate('/contact')}
-                        className="px-8 py-3 bg-[#ff486f] text-white font-semibold rounded-lg hover:opacity-90 transition-all"
+                    <motion.button
+                        whileHover={{scale: 1.07}}
+                        whileTap={{scale: 0.95}}
+                        onClick={() => navigate("/contact")}
+                        className="px-10 py-4 bg-[#ff486f] text-white font-semibold rounded-full shadow-[0_0_30px_#ff486f70] hover:shadow-[0_0_45px_#ff486fb0] transition-all duration-300"
                     >
-                        상담 신청하기
-                    </button>
+                        프로젝트 문의하기 →
+                    </motion.button>
                 </motion.div>
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#ff486f20,transparent_70%)]"/>
             </section>
 
-            {/* ✅ Services Section */}
-            <section className="py-20 px-6 bg-white">
+            {/* ✅ Projects Section */}
+            <section className="relative min-h-screen snap-start flex flex-col justify-center bg-[#1a1a1d] py-16 px-6">
                 <motion.div
-                    className="text-center mb-16"
+                    className="text-center mb-12"
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true }}
+                    viewport={{once: true}}
                     variants={fadeUp}
                 >
-                    <h2 className="text-3xl md:text-4xl font-black mb-3">우리가 제공하는 서비스</h2>
-                    <p className="text-gray-600 text-lg">
-                        스타트업 성공을 위한 핵심 개발 솔루션
+                    <h2 className="text-4xl font-black mb-3">
+                        Recent <span className="text-[#ff486f]">Works</span>
+                    </h2>
+                    <p className="text-gray-400 text-lg">
+                        스타트업과 브랜드를 위한 우리의 프로젝트를 소개합니다.
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 container mx-auto">
-                    {services.map((service, index) => {
-                        const Icon = service.icon;
-                        return (
-                            <motion.div
-                                key={index}
-                                className="p-8 rounded-2xl bg-gray-50 hover:bg-[#ff486f] transition-all duration-300 hover:text-white border border-gray-100 hover:shadow-xl"
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true }}
-                                variants={fadeUp}
-                            >
-                                <div className="w-12 h-12 bg-[#ff486f]/10 rounded-xl flex items-center justify-center mb-6">
-                                    <Icon className="text-[#ff486f]" size={28} />
-                                </div>
-                                <h3 className="font-bold text-xl mb-3">{service.title}</h3>
-                                <p className="text-gray-600 mb-4 text-sm leading-relaxed">
-                                    {service.description}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 container mx-auto">
+                    {projects.map((project, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{opacity: 0, y: 20}}
+                            whileInView={{opacity: 1, y: 0}}
+                            transition={{duration: 0.5, delay: index * 0.1}}
+                            viewport={{once: true}}
+                            className="group bg-[#18181b] rounded-2xl border border-[#2e2e32] overflow-hidden hover:shadow-[0_0_40px_#ff486f50] transition-all duration-500"
+                        >
+                            <img
+                                src={project.image}
+                                alt={project.title}
+                                className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500"
+                            />
+                            <div className="p-6">
+                                <h3 className="font-bold text-xl mb-2 text-white">{project.title}</h3>
+                                <p className="text-gray-400 mb-4 text-sm leading-relaxed">
+                                    {project.desc}
                                 </p>
-                                <p className="text-[#ff486f] font-semibold">{service.price}</p>
-                            </motion.div>
-                        );
-                    })}
-                </div>
-            </section>
-
-            {/* ✅ Benefits Section */}
-            <section className="py-20 px-6 bg-gray-50">
-                <motion.div
-                    className="text-center mb-16"
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={fadeUp}
-                >
-                    <h2 className="text-3xl md:text-4xl font-black mb-3">
-                        왜 Roommates Studio를 선택해야 할까?
-                    </h2>
-                </motion.div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 container mx-auto">
-                    {benefits.map((benefit, index) => (
-                        <motion.div
-                            key={index}
-                            className="flex items-start space-x-4 p-5 bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all"
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true }}
-                            variants={fadeUp}
-                        >
-                            <CheckCircle className="text-[#ff486f] flex-shrink-0 mt-1" size={24} />
-                            <span className="text-gray-700">{benefit}</span>
-                        </motion.div>
-                    ))}
-                </div>
-            </section>
-
-            {/* ✅ Process Section */}
-            <section className="py-20 px-6 bg-white">
-                <motion.div
-                    className="text-center mb-16"
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    variants={fadeUp}
-                >
-                    <h2 className="text-3xl md:text-4xl font-black mb-3">
-                        개발 프로세스
-                    </h2>
-                </motion.div>
-
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-8 container mx-auto">
-                    {['상담', 'UI/UX 설계', '개발', '배포'].map((step, index) => (
-                        <motion.div
-                            key={index}
-                            className="text-center"
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true }}
-                            variants={fadeUp}
-                        >
-                            <div className="w-16 h-16 bg-[#ff486f] text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">
-                                {index + 1}
+                                <div className="flex flex-wrap gap-2">
+                                    {project.tags.map((tag, i) => (
+                                        <span
+                                            key={i}
+                                            className="px-3 py-1 text-xs rounded-full bg-[#ff486f20] text-[#ff486f] border border-[#ff486f40]"
+                                        >
+                      {tag}
+                    </span>
+                                    ))}
+                                </div>
                             </div>
-                            <h4 className="font-semibold mb-2">{step}</h4>
-                            <p className="text-sm text-gray-600">
-                                {['요구사항 분석', '디자인 및 프로토타입', '풀스택 개발', '배포 및 유지보수'][index]}
-                            </p>
                         </motion.div>
                     ))}
                 </div>
             </section>
 
             {/* ✅ CTA Section */}
-            <motion.section
-                className="py-20 text-center bg-gray-900 text-white"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeUp}
-            >
-                <h2 className="text-3xl md:text-4xl font-black mb-4">
-                    당신의 스타트업을 다음 단계로
+            {/*<section className="min-h-screen snap-start flex flex-col items-center justify-center bg-[#0b0b0c] text-center">*/}
+            {/*    <h2 className="text-4xl md:text-5xl font-black mb-6">*/}
+            {/*        당신의 <span className="text-[#ff486f]">아이디어</span>를 실현할 차례입니다.*/}
+            {/*    </h2>*/}
+            {/*    <p className="text-gray-400 mb-10 text-lg">*/}
+            {/*        단순한 외주가 아니라, 함께 성장하는 파트너십을 제공합니다.*/}
+            {/*    </p>*/}
+            {/*    <motion.button*/}
+            {/*        whileHover={{ scale: 1.07 }}*/}
+            {/*        whileTap={{ scale: 0.95 }}*/}
+            {/*        onClick={() => navigate("/contact")}*/}
+            {/*        className="px-10 py-4 bg-[#ff486f] text-white font-bold rounded-full shadow-[0_0_30px_#ff486f70] hover:shadow-[0_0_50px_#ff486fb0] transition-all duration-300"*/}
+            {/*    >*/}
+            {/*        상담 신청하기 →*/}
+            {/*    </motion.button>*/}
+            {/*</section>*/}
+
+            <section className="min-h-screen snap-start flex flex-col items-center justify-center bg-white text-center">
+                <h2 className="text-4xl md:text-5xl font-black mb-6 text-gray-900">
+                    당신의 <span className="text-[#ff486f]">아이디어</span>를 실현할 차례입니다.
                 </h2>
-                <p className="text-gray-300 mb-8">
-                    지금 바로 상담을 받고 아이디어를 현실로 만들어보세요
+                <p className="text-gray-600 mb-10 text-lg">
+                    단순한 외주가 아니라, 함께 성장하는 파트너십을 제공합니다.
                 </p>
-                <button className="px-8 py-3 bg-[#ff486f] text-white font-semibold rounded-lg hover:opacity-90 transition-all">
-                    지금 연락하기
-                </button>
-            </motion.section>
+                <motion.button
+                    whileHover={{scale: 1.07}}
+                    whileTap={{scale: 0.95}}
+                    onClick={() => navigate("/contact")}
+                    className="px-10 py-4 bg-[#ff486f] text-white font-bold rounded-full shadow-[0_0_25px_#ff486f50] hover:shadow-[0_0_40px_#ff486f90] transition-all duration-300"
+                >
+                    상담 신청하기 →
+                </motion.button>
+            </section>
         </div>
     );
 }
