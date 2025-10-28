@@ -13,14 +13,26 @@ export default function App() {
             <Router>
                 <div className="min-h-screen flex flex-col bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 transition-colors">
                     <Header />
-                    <main className={`flex-1 ${location.pathname === "/" ? "p-0 m-0" : "container mx-auto px-4 py-8 md:py-12"}`}>
+
+                    {/* ✅ 메인 영역이 남은 공간 전부 차지 */}
+                    <main
+                        className={`flex-grow ${
+                            location.pathname === "/"
+                                ? "p-0 m-0"
+                                : "container mx-auto px-4 py-8 md:py-12"
+                        }`}
+                    >
                         <Routes>
                             <Route path="/" element={<Home />} />
                             <Route path="/studio" element={<Studio />} />
                             <Route path="/contact" element={<Contact />} />
                         </Routes>
                     </main>
-                    <Footer />
+
+                    {/* ✅ PC에서만 보이는 Footer (모바일 숨김) */}
+                    <footer className="hidden md:block">
+                        <Footer />
+                    </footer>
                 </div>
             </Router>
         </HelmetProvider>

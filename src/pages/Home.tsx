@@ -659,7 +659,7 @@ export default function TerminalBuildHero() {
         <><Helmet>
             <title>룸메이트 | 스타트업 MVP 전문 개발사</title>
             <link rel="canonical" href="https://roomi.co.kr/" />
-            <meta name="description" content="1~2주 내 MVP부터 웹/앱/AI까지 빠르게 구현하는 ROOMMATES Studio" />
+            <meta name="description" content="1~2주 내 MVP부터 웹/앱/AI까지 빠르게 구현하는 ROOMMATE Studio" />
             <meta property="og:title" content="룸메이트 | 스타트업 MVP 전문 개발사" />
             <meta property="og:description" content="아이디어를 빠르게 MVP로. 웹/앱/AI 한 번에." />
             <meta property="og:image" content="https://roomfiles.s3.ap-northeast-2.amazonaws.com/uploads/image.png" />
@@ -818,6 +818,8 @@ export default function TerminalBuildHero() {
                     )}
                 </AnimatePresence>
             </section>
+
+
         </div>
         </>
     );

@@ -12,8 +12,8 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
                     {/* ✅ Brand */}
                     <div>
-                        <h3 className="text-3xl font-black text-[#ff486f] mb-4">
-                            ROOMMATES
+                        <h3 className="text-2xl font-black text-[#ff486f] mb-4">
+                            ROOMMATE <span className="text-xl text-white font-semibold">studio</span>
                         </h3>
                         <p className="text-gray-400 text-sm leading-relaxed">
                             빠르고 효율적인 MVP 개발을 위한 전문 스튜디오.
@@ -28,11 +28,11 @@ export default function Footer() {
                             <li><a href="/" className="hover:text-[#ff486f] transition">Home</a></li>
                             <li><a href="/studio" className="hover:text-[#ff486f] transition">Portfolios</a></li>
                             <li><a href="/contact" className="hover:text-[#ff486f] transition">Contact</a></li>
-                            <li>
-                                <a href="https://cleanupsystems.shop" target="_blank" rel="noreferrer" className="hover:text-[#ff486f] transition">
-                                    CleanUp Systems (임직원 복지몰)
-                                </a>
-                            </li>
+                            {/*<li>*/}
+                            {/*    <a href="https://cleanupsystems.shop" target="_blank" rel="noreferrer" className="hover:text-[#ff486f] transition">*/}
+                            {/*        CleanUp Systems (임직원 복지몰)*/}
+                            {/*    </a>*/}
+                            {/*</li>*/}
                         </ul>
                     </div>
 
@@ -61,7 +61,7 @@ export default function Footer() {
                 {/* ✅ Bottom Line */}
                 <div className="border-t border-[#2a2a2d] pt-8 flex flex-col md:flex-row items-center justify-between">
                     <p className="text-gray-500 text-sm mb-4 md:mb-0">
-                        © {currentYear} ROOMMATES Studio. All rights reserved.
+                        © {currentYear} ROOMMATE Studio. All rights reserved.
                     </p>
                     <div className="flex items-center space-x-4">
                         <a href="#" className="text-gray-400 hover:text-[#ff486f] transition">
