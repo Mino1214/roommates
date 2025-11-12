@@ -1,611 +1,9 @@
-// import {
-//     Code,
-//     Rocket,
-//     Clock,
-//     Shield,
-//     Smartphone,
-//     Globe,
-//     Zap,
-// } from 'lucide-react';
-// import { useState } from 'react';
-// import { motion } from 'framer-motion';
-//
-// export default function Home() {
-//     const [, setHoveredCard] = useState<number | null>(null);
-//
-//     const features = [
-//         { icon: Rocket, title: '빠른 MVP 개발', description: '아이디어를 2-4주 안에 실제 제품으로 구현합니다' },
-//         { icon: Code, title: '전문 개발팀', description: '10년+ 경력의 시니어 개발자들이 프로젝트를 담당합니다' },
-//         { icon: Shield, title: '품질 보증', description: '6개월 무상 유지보수와 버그 수정을 제공합니다' },
-//         { icon: Clock, title: '정시 납품', description: '약속된 일정을 지키며, 주 단위 진행상황을 공유합니다' },
-//     ];
-//
-//     const services = [
-//         {
-//             icon: Smartphone,
-//             title: '모바일 앱',
-//             description: 'iOS/Android 네이티브 & 크로스플랫폼',
-//             tech: ['React Native', 'Flutter', 'Swift', 'Kotlin'],
-//         },
-//         {
-//             icon: Globe,
-//             title: '웹 애플리케이션',
-//             description: '반응형 웹사이트 & SaaS 플랫폼',
-//             tech: ['React', 'Next.js', 'Node.js', 'TypeScript'],
-//         },
-//         {
-//             icon: Zap,
-//             title: 'AI/ML 솔루션',
-//             description: 'ChatGPT 연동 & 맞춤형 AI 모델',
-//             tech: ['OpenAI', 'Python', 'TensorFlow', 'LangChain'],
-//         },
-//     ];
-//
-//     const process = [
-//         { step: '1', title: '무료 상담', description: '프로젝트 요구사항 분석' },
-//         { step: '2', title: '견적 & 일정', description: '투명한 가격과 명확한 일정' },
-//         { step: '3', title: '개발 진행', description: '애자일 방식의 빠른 개발' },
-//         { step: '4', title: '배포 & 지원', description: '런칭과 지속적인 유지보수' },
-//     ];
-//
-//     const stats = [
-//         { value: '2', label: '완료된 프로젝트 (Roomi, ifdot)' },
-//         { value: '100%', label: '고객 만족도' },
-//         { value: '3~4주', label: '평균 개발 기간' },
-//         { value: '24/7', label: '지원 서비스' },
-//     ];
-//
-//     const fadeUp = {
-//         hidden: { opacity: 0, y: 40 },
-//         visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-//     };
-//
-//     return (
-//         <div className="min-h-screen bg-[#0B0B0C] text-white relative overflow-hidden">
-//             {/* 🔮 Refokus Glow Background */}
-//             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,#ff486f15,transparent_70%)]"></div>
-//             <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,#00fff215,transparent_70%)]"></div>
-//
-//
-//             {/* Hero 3D Parallax */}
-//             <section
-//                 className="relative overflow-hidden perspective-[1000px]"
-//                 onMouseMove={(e) => {
-//                     const x = (e.clientX / window.innerWidth - 0.5) * 20;
-//                     const y = (e.clientY / window.innerHeight - 0.5) * 20;
-//                     const hero = document.getElementById("hero-3d");
-//                     if (hero) hero.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
-//                 }}
-//                 onMouseLeave={() => {
-//                     const hero = document.getElementById("hero-3d");
-//                     if (hero) hero.style.transform = "rotateY(0deg) rotateX(0deg)";
-//                 }}
-//             >
-//                 <motion.div
-//                     id="hero-3d"
-//                     className="relative z-10 container mx-auto px-6 py-32 text-center transition-transform duration-500"
-//                     initial={{ opacity: 0, y: 20 }}
-//                     animate={{ opacity: 1, y: 0 }}
-//                 >
-//                     <h1 className="text-6xl font-black text-white mb-6 drop-shadow-[0_0_10px_#ff486f80]">
-//                         Reality in <span className="text-[#ff486f]">Motion</span>
-//                     </h1>
-//                     <p className="text-gray-400 text-xl max-w-2xl mx-auto">
-//                         We turn your MVP into a living product with motion and precision.
-//                     </p>
-//                 </motion.div>
-//             </section>
-//             {/* ✅ Hero */}
-//             <section className="relative overflow-hidden">
-//                 <motion.div
-//                     className="relative z-10 container mx-auto px-6 py-32 text-center"
-//                     initial="hidden"
-//                     animate="visible"
-//                     variants={fadeUp}
-//                 >
-//                     <span className="inline-block px-4 py-2 mb-6 text-sm font-semibold text-[#ff486f] bg-[#ff486f]/10 rounded-full border border-[#ff486f]/30">
-//                         🚀 스타트업 MVP 전문 개발사
-//                     </span>
-//
-//                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight">
-//                         아이디어를{' '}
-//                         <span className="block text-[#ff486f] drop-shadow-[0_0_10px_#ff486f70]">
-//                             현실로 만드는
-//                         </span>
-//                         <span className="block text-white">룸메이트</span>
-//                     </h1>
-//
-//                     <p className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
-//                         스타트업의 MVP를 빠르고 안정적으로 개발합니다.
-//                         <br />최고의 개발팀과 함께 당신의 비즈니스를 시작하세요.
-//                     </p>
-//
-//                     <motion.button
-//                         whileHover={{ scale: 1.05 }}
-//                         whileTap={{ scale: 0.95 }}
-//                         className="px-8 py-4 bg-[#ff486f] text-white font-bold rounded-full shadow-[0_0_15px_#ff486f70] hover:shadow-[0_0_30px_#ff486f90] transition-all duration-300"
-//                     >
-//                         프로젝트 상담하기 →
-//                     </motion.button>
-//                 </motion.div>
-//             </section>
-//
-//             {/* ✅ Features */}
-//             <section className="py-24 px-6">
-//                 <div className="container mx-auto">
-//                     <motion.div
-//                         className="text-center mb-16"
-//                         initial="hidden"
-//                         whileInView="visible"
-//                         viewport={{ once: true }}
-//                         variants={fadeUp}
-//                     >
-//                         <h2 className="text-3xl md:text-4xl font-black mb-4 text-white">
-//                             왜 룸메이트인가?
-//                         </h2>
-//                         <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-//                             스타트업이 성공하는 데 필요한 모든 것을 제공합니다
-//                         </p>
-//                     </motion.div>
-//
-//                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-//                         {features.map((feature, index) => {
-//                             const Icon = feature.icon;
-//                             return (
-//                                 <motion.div
-//                                     key={index}
-//                                     className="group relative"
-//                                     whileHover={{ scale: 1.05, y: -6 }}
-//                                     initial="hidden"
-//                                     whileInView="visible"
-//                                     variants={fadeUp}
-//                                     viewport={{ once: true }}
-//                                     onMouseEnter={() => setHoveredCard(index)}
-//                                     onMouseLeave={() => setHoveredCard(null)}
-//                                 >
-//                                     <div className="relative bg-white/5 backdrop-blur-lg p-8 rounded-2xl border border-white/10 hover:border-[#ff486f]/40 transition-all duration-500 hover:shadow-[0_0_25px_#ff486f50]">
-//                                         <div className="w-12 h-12 bg-[#ff486f]/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-[#ff486f] transition-all duration-300">
-//                                             <Icon className="text-[#ff486f] group-hover:text-white transition-colors" size={24} />
-//                                         </div>
-//                                         <h3 className="font-bold text-lg text-white mb-2">{feature.title}</h3>
-//                                         <p className="text-gray-400 text-sm leading-relaxed">{feature.description}</p>
-//                                     </div>
-//                                 </motion.div>
-//                             );
-//                         })}
-//                     </div>
-//                 </div>
-//             </section>
-//
-//             {/* ✅ Services (Refokus Slide형) */}
-//             <section className="py-24 px-6">
-//                 <div className="container mx-auto">
-//                     <motion.div
-//                         className="text-center mb-16"
-//                         initial="hidden"
-//                         whileInView="visible"
-//                         viewport={{ once: true }}
-//                         variants={fadeUp}
-//                     >
-//                         <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
-//                             우리가 만드는 것
-//                         </h2>
-//                         <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-//                             최신 기술스택으로 모든 플랫폼을 지원합니다
-//                         </p>
-//                     </motion.div>
-//
-//                     <div className="flex overflow-x-auto gap-6 pb-4 snap-x snap-mandatory scrollbar-hide">
-//                         {services.map((service, index) => {
-//                             const Icon = service.icon;
-//                             return (
-//                                 <motion.div
-//                                     key={index}
-//                                     className="min-w-[320px] snap-center bg-white/5 border border-white/10 backdrop-blur-md rounded-2xl p-8 hover:shadow-[0_0_25px_#ff486f40] hover:scale-105 transition-all duration-500"
-//                                     whileHover={{ y: -6 }}
-//                                 >
-//                                     <Icon className="text-[#ff486f] mb-4" size={32} />
-//                                     <h3 className="text-xl font-bold text-white mb-2">{service.title}</h3>
-//                                     <p className="text-gray-400 mb-4">{service.description}</p>
-//                                     <div className="flex flex-wrap gap-2">
-//                                         {service.tech.map((tech, i) => (
-//                                             <span
-//                                                 key={i}
-//                                                 className="px-3 py-1 bg-white/10 text-xs font-medium text-[#ff486f] rounded-full border border-white/10"
-//                                             >
-//                                                 {tech}
-//                                             </span>
-//                                         ))}
-//                                     </div>
-//                                 </motion.div>
-//                             );
-//                         })}
-//                     </div>
-//                 </div>
-//             </section>
-//
-//             {/* ✅ Process */}
-//             <section className="py-24 px-6">
-//                 <div className="container mx-auto">
-//                     <motion.div
-//                         className="text-center mb-16"
-//                         initial="hidden"
-//                         whileInView="visible"
-//                         viewport={{ once: true }}
-//                         variants={fadeUp}
-//                     >
-//                         <h2 className="text-3xl md:text-4xl font-black mb-4 text-white">
-//                             개발 프로세스
-//                         </h2>
-//                         <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-//                             4단계로 완성되는 당신의 MVP
-//                         </p>
-//                     </motion.div>
-//
-//                     <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-//                         {process.map((item, index) => (
-//                             <motion.div
-//                                 key={index}
-//                                 className="text-center bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10 hover:border-[#ff486f]/30 hover:shadow-[0_0_25px_#ff486f40] transition-all duration-500"
-//                                 initial="hidden"
-//                                 whileInView="visible"
-//                                 viewport={{ once: true }}
-//                                 variants={fadeUp}
-//                             >
-//                                 <div className="w-16 h-16 bg-[#ff486f] text-white rounded-full flex items-center justify-center font-bold text-xl mx-auto mb-4">
-//                                     {item.step}
-//                                 </div>
-//                                 <h3 className="font-bold text-white mb-2">{item.title}</h3>
-//                                 <p className="text-sm text-gray-400">{item.description}</p>
-//                             </motion.div>
-//                         ))}
-//                     </div>
-//                 </div>
-//             </section>
-//
-//             {/* ✅ Stats */}
-//             <section className="py-12 px-6 border-t border-white/10 bg-black/40 backdrop-blur-xl">
-//                 <div className="container mx-auto">
-//                     <motion.div
-//                         className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center"
-//                         initial="hidden"
-//                         whileInView="visible"
-//                         viewport={{ once: true }}
-//                         variants={fadeUp}
-//                     >
-//                         {stats.map((stat, index) => (
-//                             <motion.div key={index} whileHover={{ scale: 1.1 }}>
-//                                 <p className="text-3xl font-bold text-[#ff486f] drop-shadow-[0_0_10px_#ff486f70]">
-//                                     {stat.value}
-//                                 </p>
-//                                 <p className="text-gray-400 mt-1">{stat.label}</p>
-//                             </motion.div>
-//                         ))}
-//                     </motion.div>
-//                 </div>
-//             </section>
-//         </div>
-//     );
-// }
-
-// import { useEffect, useRef } from "react";
-// import * as THREE from "three";
-// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
-//
-// // 🪐 Scene 생성
-// function createScene() {
-//     const scene = new THREE.Scene();
-//     scene.background = new THREE.Color(0xffffff);
-//     return scene;
-// }
-//
-// // 🎥 카메라 생성
-// function createCamera(container: HTMLDivElement) {
-//     const camera = new THREE.PerspectiveCamera(
-//         60,
-//         container.clientWidth / container.clientHeight,
-//         0.1,
-//         1000
-//     );
-//     camera.position.set(0, 0, 200);
-//     return camera;
-// }
-//
-// // 🧱 Renderer 생성
-// function createRenderer(container: HTMLDivElement) {
-//     const renderer = new THREE.WebGLRenderer({ antialias: true });
-//     renderer.setSize(container.clientWidth, container.clientHeight);
-//     renderer.setPixelRatio(window.devicePixelRatio); // ✅ 디바이스 해상도 그대로
-//     renderer.outputEncoding = THREE.sRGBEncoding; // ✅ 감마 교정
-//     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-//     renderer.toneMappingExposure = 1.2; // ✅ 살짝 더 부드럽게
-//     renderer.shadowMap.enabled = true;
-//     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-//     container.appendChild(renderer.domElement);
-//     return renderer;
-// }
-//
-// // 🌕 코어 구체 (ShaderMaterial 달 표면 버전)
-// function createCoreSphere() {
-//     const geometry = new THREE.SphereGeometry(30, 800, 800);
-//
-//     const uniforms = {
-//         time: { value: 0 },
-//         baseColor: { value: new THREE.Color(0xdedede) },
-//         lightDir: { value: new THREE.Vector3(1, 1, 1).normalize() },
-//     };
-//
-//     const material = new THREE.ShaderMaterial({
-//         uniforms,
-//         vertexShader: `
-//             varying vec3 vNormal;
-//             varying vec3 vPos;
-//             void main() {
-//                 vNormal = normalize(normalMatrix * normal);
-//                 vPos = (modelMatrix * vec4(position, 1.0)).xyz;
-//                 gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-//             }
-//         `,
-//         fragmentShader: `
-//             uniform float time;
-// uniform vec3 baseColor;
-// uniform vec3 lightDir;
-// varying vec3 vNormal;
-// varying vec3 vPos;
-//
-// float hash(vec3 p) {
-//     p = fract(p * 0.3183099 + vec3(0.1,0.2,0.3));
-//     p *= 17.0;
-//     return fract(p.x * p.y * p.z * (p.x + p.y + p.z));
-// }
-//
-// float smootherstep(float edge0, float edge1, float x) {
-//     x = clamp((x - edge0) / (edge1 - edge0), 0.0, 1.0);
-//     return x * x * x * (x * (x * 6.0 - 15.0) + 10.0);
-// }
-//
-// float noise(vec3 p) {
-//     vec3 i = floor(p);
-//     vec3 f = fract(p);
-//     f = vec3(
-//         smootherstep(0.0, 1.0, f.x),
-//         smootherstep(0.0, 1.0, f.y),
-//         smootherstep(0.0, 1.0, f.z)
-//     );
-//     float n = mix(
-//         mix(
-//             mix(hash(i + vec3(0,0,0)), hash(i + vec3(1,0,0)), f.x),
-//             mix(hash(i + vec3(0,1,0)), hash(i + vec3(1,1,0)), f.x),
-//             f.y
-//         ),
-//         mix(
-//             mix(hash(i + vec3(0,0,1)), hash(i + vec3(1,0,1)), f.x),
-//             mix(hash(i + vec3(0,1,1)), hash(i + vec3(1,1,1)), f.x),
-//             f.y
-//         ),
-//         f.z
-//     );
-//     return n;
-// }
-//
-// void main() {
-//     float n = noise(vPos * 0.08) * 0.6 + noise(vPos * 0.4) * 0.3;
-//
-//     // ✅ 노이즈를 약간 블러링한 효과로 변환
-//     float softNoise = smoothstep(0.0, 1.0, n);
-//
-//     // ✅ 라이트 확산 계산
-//     float brightness = max(dot(vNormal, lightDir), 0.0);
-//     vec3 diffuse = baseColor * (0.5 + brightness * 0.6);
-//     vec3 finalColor = mix(diffuse, vec3(0.1), softNoise * 0.3);
-//
-//     // ✅ 부드러운 하이라이트 (Specular)
-//     vec3 viewDir = normalize(-vPos);
-//     vec3 halfDir = normalize(lightDir + viewDir);
-//     float spec = pow(max(dot(vNormal, halfDir), 0.0), 50.0);
-//     finalColor += vec3(spec * 0.25);
-//
-//     gl_FragColor = vec4(finalColor, 1.0);
-// }
-//         `,
-//     });
-//
-//     const mesh = new THREE.Mesh(geometry, material);
-//     mesh.castShadow = true;
-//     mesh.receiveShadow = true;
-//     return { mesh, geometry, material };
-// }
-//
-// // ☀️ 정적 조명 설정 - 완전히 고정된 위치와 방향
-// function createStaticLights(scene: THREE.Scene) {
-//     // 1. 매우 약한 전체 조명 (그림자 부분이 너무 어둡지 않도록)
-//     const ambientLight = new THREE.AmbientLight(0xffffff, 0.05);
-//     scene.add(ambientLight);
-//
-//     // 2. 메인 태양광 - 완전히 고정된 위치에서 평행광선
-//     // ☀️ 메인 태양광 - 완전히 고정된 위치에서 평행광선
-//     const sunLight = new THREE.DirectionalLight(0xffffff, 2.5); // 💡 밝기 강화 (기존 1.2 → 2.5)
-//     sunLight.position.set(100, 200, 150); // 📍 좀 더 위쪽으로
-//     sunLight.castShadow = true;
-//
-// // ✅ 그림자 범위(조명 범위) 확장
-//     sunLight.shadow.mapSize.width = 4096;
-//     sunLight.shadow.mapSize.height = 4096;
-//     sunLight.shadow.camera.near = 0.5;
-//     sunLight.shadow.camera.far = 1000;
-//     sunLight.shadow.camera.left = -300;
-//     sunLight.shadow.camera.right = 300;
-//     sunLight.shadow.camera.top = 300;
-//     sunLight.shadow.camera.bottom = -300;
-//
-//     scene.add(sunLight);
-//     scene.add(sunLight.target);
-//
-//     // 3. 보조 rim light (윤곽선 강조용) - 옵션
-//     const rimLight = new THREE.DirectionalLight(0x4488ff, 0.3);
-//     rimLight.position.set(-50, 50, -100);
-//     rimLight.target.position.set(0, 0, 0);
-//     scene.add(rimLight);
-//     scene.add(rimLight.target);
-//
-//     // 4. 바닥/배경 조명 - 아래에서 올라오는 약한 빛
-//     const fillLight = new THREE.DirectionalLight(0xffccaa, 0.2);
-//     fillLight.position.set(0, -100, 50);
-//     fillLight.target.position.set(0, 0, 0);
-//     scene.add(fillLight);
-//     scene.add(fillLight.target);
-//
-//     return { sunLight, rimLight, fillLight };
-// }
-//
-// // 🎞️ 애니메이션 함수
-// // 🎞️ 애니메이션 함수 (ShaderMaterial 전용)
-// function createAnimation({
-//                              coreMesh,
-//                              coreGeometry,
-//                              coreMaterial,
-//                              renderer,
-//                              scene,
-//                              camera,
-//                              animationRef,
-//                              controls,
-//                          }: {
-//     coreMesh: THREE.Mesh;
-//     coreGeometry: THREE.BufferGeometry;
-//     coreMaterial: THREE.ShaderMaterial;
-//     renderer: THREE.WebGLRenderer;
-//     scene: THREE.Scene;
-//     camera: THREE.Camera;
-//     animationRef: React.MutableRefObject<number | undefined>;
-//     controls: OrbitControls;
-// }) {
-//     const basePositions = coreGeometry.attributes.position.array as Float32Array;
-//     const directionVectors: THREE.Vector3[] = [];
-//     for (let i = 0; i < basePositions.length; i += 3) {
-//         directionVectors.push(
-//             new THREE.Vector3(basePositions[i], basePositions[i + 1], basePositions[i + 2]).normalize()
-//         );
-//     }
-//
-//     const clock = new THREE.Clock();
-//     const duration = 4.0;
-//     const baseRadius = 30;
-//     const minScale = 1.0;
-//     const maxScale = 1.8;
-//
-//     const animate = () => {
-//         const elapsed = clock.getElapsedTime();
-//         const cycleTime = elapsed % duration;
-//         let progress = cycleTime / duration;
-//
-//         // 팽창/수축 이징
-//         if (progress > 0.5) progress = 1 - (progress - 0.5) * 2;
-//         else progress = progress * 2;
-//         const ease = 0.5 - Math.cos(progress * Math.PI) / 2;
-//         const expand = THREE.MathUtils.lerp(minScale, maxScale, ease);
-//
-//         // 폭발/수축 애니메이션
-//         const pos = coreGeometry.attributes.position.array as Float32Array;
-//         for (let i = 0; i < directionVectors.length; i++) {
-//             const dir = directionVectors[i];
-//             const idx = i * 3;
-//             pos[idx] = dir.x * baseRadius * expand;
-//             pos[idx + 1] = dir.y * baseRadius * expand;
-//             pos[idx + 2] = dir.z * baseRadius * expand;
-//         }
-//         coreGeometry.attributes.position.needsUpdate = true;
-//
-//         // 회전
-//         coreMesh.rotation.y += 0.001;
-//         coreMesh.rotation.x += 0.0006;
-//
-//         // ✅ time uniform 업데이트 (노이즈 변화용)
-//         coreMaterial.uniforms.time.value = elapsed;
-//
-//         controls.update();
-//         renderer.render(scene, camera);
-//         animationRef.current = requestAnimationFrame(animate);
-//     };
-//
-//     animate();
-// }
-//
-// export default function HeroSection() {
-//     const containerRef = useRef<HTMLDivElement>(null);
-//     const animationRef = useRef<number>();
-//
-//     useEffect(() => {
-//         const container = containerRef.current;
-//         if (!container) return;
-//
-//         const scene = createScene();
-//         const camera = createCamera(container);
-//         const renderer = createRenderer(container);
-//
-//         const controls = new OrbitControls(camera, renderer.domElement);
-//         controls.enableDamping = true;
-//         controls.dampingFactor = 0.05;
-//         controls.enableZoom = false;
-//         controls.enablePan = false;
-//
-//         // 1️⃣ coreMesh 생성 후 씬에 추가
-//         const { mesh: coreMesh, geometry: coreGeometry, material: coreMaterial } = createCoreSphere();
-//         scene.add(coreMesh);
-//
-//         // 2️⃣ 정적 조명 설정 (한번 설정 후 변경 없음)
-//         createStaticLights(scene);
-//
-//         // 3️⃣ 선택사항: 바닥면 추가 (그림자를 더 잘 보이게)
-//         // const planeGeometry = new THREE.PlaneGeometry(200, 200);
-//         // const planeMaterial = new THREE.MeshStandardMaterial({
-//         //     color: 0xffffff,
-//         //     roughness: 0.8,
-//         //     metalness: 0.1
-//         // });
-//         // const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-//         // plane.rotation.x = -Math.PI / 2;
-//         // plane.position.y = -50;
-//         // plane.receiveShadow = true;
-//         // scene.add(plane);
-//
-//         // 4️⃣ 애니메이션 실행
-//         createAnimation({
-//             coreMesh,
-//             coreGeometry,
-//             coreMaterial,
-//             renderer,
-//             scene,
-//             camera,
-//             animationRef,
-//             controls
-//         });
-//
-//         const handleResize = () => {
-//             camera.aspect = container.clientWidth / container.clientHeight;
-//             camera.updateProjectionMatrix();
-//             renderer.setSize(container.clientWidth, container.clientHeight);
-//         };
-//         window.addEventListener("resize", handleResize);
-//
-//         return () => {
-//             cancelAnimationFrame(animationRef.current!);
-//             window.removeEventListener("resize", handleResize);
-//             renderer.dispose();
-//             if (container.contains(renderer.domElement)) container.removeChild(renderer.domElement);
-//         };
-//     }, []);
-//
-//     return (
-//         <div className="fixed inset-0 m-0 p-0 overflow-hidden bg-black">
-//             <div ref={containerRef} className="absolute inset-0 m-0 p-0" />
-//         </div>
-//     );
-// }
 import { useEffect, useState } from "react";
-import {AnimatePresence, motion} from "framer-motion";
-import {Helmet} from "react-helmet-async";
+import { AnimatePresence, motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 import EstimateWizard from "../components/ui/EstimateWizard.tsx";
 import Footer from "../components/layout/Footer.tsx";
+import { texts } from "../i18n/text.ts";
 
 export default function TerminalBuildHero() {
     const [displayedLines, setDisplayedLines] = useState<string[]>([]);
@@ -614,20 +12,18 @@ export default function TerminalBuildHero() {
     const [charIndex, setCharIndex] = useState(0);
     const [loop, setLoop] = useState(0);
     const [showModal, setShowModal] = useState(false);
-    const messages = [
-        "> 아이디어 만 있다면?",
-        "> 외주 신청",
-        "> 디자인 · 개발 진행",
-        "> MVP 완성",
-        "> 🚀 런칭 완료!",
-        "",
-        "✨ 단순하지만 빠르게, 당신의 아이디어를 실현합니다."
-    ];
 
-    // ✅ 타이핑 효과 (한 글자씩)
+    // ✅ 브라우저 언어 감지
+    const userLang =
+        typeof navigator !== "undefined"
+            ? navigator.language || (navigator.languages && navigator.languages[0]) || "ko"
+            : "ko";
+    const lang = userLang.startsWith("en") ? "en" : "ko";
+    const t = texts[lang];
+
+    // ✅ 타이핑 효과
     useEffect(() => {
-        if (lineIndex >= messages.length) {
-            // 모두 끝나면 2초 쉬고 다시 반복
+        if (lineIndex >= t.messages.length) {
             setTimeout(() => {
                 setDisplayedLines([]);
                 setLineIndex(0);
@@ -638,57 +34,53 @@ export default function TerminalBuildHero() {
             return;
         }
 
-        if (charIndex < messages[lineIndex].length) {
+        if (charIndex < t.messages[lineIndex].length) {
             const timeout = setTimeout(() => {
-                setCurrentText((prev) => prev + messages[lineIndex][charIndex]);
+                setCurrentText((prev) => prev + t.messages[lineIndex][charIndex]);
                 setCharIndex((prev) => prev + 1);
-            }, 35); // ⚡ 속도 조절 (빠르게 주르륵)
+            }, 35);
             return () => clearTimeout(timeout);
         } else {
-            // 한 줄 끝나면 다음 줄로
             const lineTimeout = setTimeout(() => {
-                setDisplayedLines((prev) => [...prev, messages[lineIndex]]);
+                setDisplayedLines((prev) => [...prev, t.messages[lineIndex]]);
                 setCurrentText("");
                 setCharIndex(0);
                 setLineIndex((prev) => prev + 1);
             }, 300);
             return () => clearTimeout(lineTimeout);
         }
-    }, [charIndex, lineIndex, loop]);
+    }, [charIndex, lineIndex, loop, t.messages]);
+
     const fadeUp = {
         hidden: { opacity: 0, y: 40 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
     };
-    return (
-        <><Helmet>
-            <title>룸메이트 | 스타트업 MVP 전문 개발사</title>
-            <link rel="canonical" href="https://roomi.co.kr/"/>
-            <meta name="description" content="1~2주 내 MVP부터 웹/앱/AI까지 빠르게 구현하는 ROOMMATE Studio"/>
-            <meta property="og:title" content="룸메이트 | 스타트업 MVP 전문 개발사"/>
-            <meta property="og:description" content="아이디어를 빠르게 MVP로. 웹/앱/AI 한 번에."/>
-            <meta property="og:image" content="https://roomfiles.s3.ap-northeast-2.amazonaws.com/uploads/image.png"/>
-            <meta property="og:url" content="https://roomi.co.kr/"/>
-            <meta name="twitter:card" content="summary_large_image"/>
-        </Helmet>
-            <div
-                className="w-full h-screen overflow-y-scroll overflow-x-hidden snap-y snap-mandatory
-               bg-gradient-to-b from-[#111113] to-[#1a1a1d] text-white"
-            >
-                {/* ✅ 1️⃣ 첫 섹션 */}
-                <section className="relative h-screen w-full flex flex-col items-center justify-center snap-start">
-                    {/* 배경 glow */}
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#ff486f20,transparent_70%)]"/>
 
-                    {/* CMD 스타일 터미널 창 */}
+    return (
+        <>
+            <Helmet>
+                <title>{t.meta.title}</title>
+                <link rel="canonical" href="https://roomi.co.kr/" />
+                <meta name="description" content={t.meta.desc} />
+                <meta property="og:title" content={t.meta.title} />
+                <meta property="og:description" content={t.meta.ogDesc} />
+                <meta property="og:image" content="https://roomfiles.s3.ap-northeast-2.amazonaws.com/uploads/image.png" />
+                <meta property="og:url" content="https://roomi.co.kr/" />
+                <meta name="twitter:card" content="summary_large_image" />
+            </Helmet>
+
+            <div className="w-full h-screen overflow-y-scroll overflow-x-hidden snap-y snap-mandatory bg-gradient-to-b from-[#111113] to-[#1a1a1d] text-white">
+                {/* ✅ 1️⃣ 첫 섹션 - 터미널 */}
+                <section className="relative h-screen w-full flex flex-col items-center justify-center snap-start">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#ff486f20,transparent_70%)]" />
+
                     <motion.div
                         key={loop}
-                        initial={{opacity: 0, y: 20}}
-                        animate={{opacity: 1, y: 0}}
-                        transition={{duration: 0.8}}
-                        className="relative bg-white text-[#111113] w-[90%] max-w-3xl rounded-lg shadow-[0_0_40px_#ff486f30]
-                   border border-[#111113]/20 font-mono overflow-hidden"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        className="relative bg-white text-[#111113] w-[90%] max-w-3xl rounded-lg shadow-[0_0_40px_#ff486f30] border border-[#111113]/20 font-mono overflow-hidden"
                     >
-                        {/* 윈도우 스타일 상단 바 */}
                         <div className="flex items-center gap-2 px-4 py-2 bg-[#f5f5f5] border-b border-[#e0e0e0]">
                             <div className="w-3 h-3 bg-[#ff5f56] rounded-full"></div>
                             <div className="w-3 h-3 bg-[#ffbd2e] rounded-full"></div>
@@ -696,7 +88,6 @@ export default function TerminalBuildHero() {
                             <span className="ml-3 text-gray-500 text-sm select-none">Roommate.exe</span>
                         </div>
 
-                        {/* 내용 */}
                         <div className="p-6 md:p-8 min-h-[220px]">
                             {displayedLines.map((line, i) => (
                                 <p key={i} className="whitespace-pre text-sm md:text-lg mb-1 tracking-tight">
@@ -707,90 +98,87 @@ export default function TerminalBuildHero() {
                                 {currentText}
                                 <motion.span
                                     className="inline-block w-3 h-5 bg-[#ff486f] ml-1"
-                                    animate={{opacity: [0, 1, 0]}}
-                                    transition={{repeat: Infinity, duration: 1}}
+                                    animate={{ opacity: [0, 1, 0] }}
+                                    transition={{ repeat: Infinity, duration: 1 }}
                                 />
                             </p>
                         </div>
                     </motion.div>
 
-                    {/* 🔽 스크롤 유도 */}
+                    {/* 스크롤 유도 */}
                     <motion.div
-                        initial={{opacity: 0, y: 0}}
-                        animate={{opacity: [0, 1, 0], y: [0, 10, 0]}}
-                        transition={{repeat: Infinity, duration: 2}}
+                        initial={{ opacity: 0, y: 0 }}
+                        animate={{ opacity: [0, 1, 0], y: [0, 10, 0] }}
+                        transition={{ repeat: Infinity, duration: 2 }}
                         className="absolute bottom-6 text-gray-400 text-sm flex flex-col items-center"
                     >
-                        <span className="mb-2">더 알아보기</span>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            strokeWidth={2}
-                            stroke="currentColor"
-                            className="w-6 h-6"
-                        >
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"/>
+                        <span className="mb-2">{t.moreText}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                             strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                         </svg>
                     </motion.div>
                 </section>
 
-                {/* ✅ 2️⃣ 다음 섹션 */}
+                {/* ✅ 2️⃣ Hero 섹션 */}
                 <section className="relative h-screen w-full flex flex-col items-center justify-center snap-start bg-gradient-to-b from-[#f6f6f6] to-[#eaeaea] text-center text-[#111113]">
                     <motion.h1
-                        initial={{opacity: 0, y: 40}}
-                        whileInView={{opacity: 1, y: 0}}
-                        transition={{duration: 1}}
-                        viewport={{once: true}}
+                        initial={{ opacity: 0, y: 40 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1 }}
+                        viewport={{ once: true }}
                         className="text-6xl md:text-8xl font-black mb-8"
                     >
-                        <span className="text-[#ff486f]">앱 · 웹</span> 개발해줘
+                        {lang === "ko" ? (
+                            <><span className="text-[#ff486f]">앱 · 웹</span> 개발해줘</>
+                        ) : (
+                            <><span className="text-[#ff486f]">App · Web</span> Development</>
+                        )}
                     </motion.h1>
                     <motion.p
-                        initial={{opacity: 0, y: 30}}
-                        whileInView={{opacity: 1, y: 0}}
-                        transition={{duration: 1.2, delay: 0.2}}
-                        viewport={{once: true}}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1.2, delay: 0.2 }}
+                        viewport={{ once: true }}
                         className="text-gray-600 text-2xl md:text-3xl mb-12 leading-relaxed"
                     >
-                        아이디어만 주세요.
-                        <br/>실제 서비스로 만들어드릴게요.
+                        {lang === "ko" ? (
+                            <>아이디어만 주세요.<br/>실제 서비스로 만들어드릴게요.</>
+                        ) : (
+                            <>Just give us your idea.<br/>We'll make it a real service.</>
+                        )}
                     </motion.p>
                     <motion.button
-                        whileHover={{scale: 1.07}}
-                        whileTap={{scale: 0.95}}
-                        onClick={() => setShowModal(true)} // ✅ 모달 열기
+                        whileHover={{ scale: 1.07 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => setShowModal(true)}
                         className="px-12 py-5 bg-[#ff486f] text-white font-bold text-lg rounded-full shadow-[0_0_25px_#ff486f90] hover:shadow-[0_0_40px_#ff486fb0] transition-all duration-300"
                     >
-                        견적 받아보기 →
+                        {t.quoteButton}
                     </motion.button>
 
                     {/* ✅ 모달 */}
                     <AnimatePresence>
                         {showModal && (
                             <>
-                                {/* 배경 어둡게 */}
                                 <motion.div
                                     key="backdrop"
-                                    initial={{opacity: 0}}
-                                    animate={{opacity: 0.6}}
-                                    exit={{opacity: 0}}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 0.6 }}
+                                    exit={{ opacity: 0 }}
                                     className="fixed inset-0 bg-black/80 backdrop-blur-sm z-40"
-                                    onClick={() => setShowModal(false)} // 배경 클릭 시 닫기
+                                    onClick={() => setShowModal(false)}
                                 />
 
-                                {/* 중앙 모달 */}
                                 <motion.div
                                     key="modal"
-                                    initial={{opacity: 0, y: 40, scale: 0.95}}
-                                    animate={{opacity: 1, y: 0, scale: 1}}
-                                    exit={{opacity: 0, y: 20, scale: 0.9}}
-                                    transition={{duration: 0.4}}
-                                    className="fixed inset-0 z-50 flex items-center justify-center px-4"
+                                    initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                                    exit={{ opacity: 0, y: 20, scale: 0.9 }}
+                                    transition={{ duration: 0.4 }}
+                                    className="fixed inset-0 z-[9999] flex items-center justify-center px-4"
                                 >
-                                    <div
-                                        className="relative bg-[#1a1a1a] rounded-2xl  max-w-lg w-full overflow-hidden">
-                                        {/* 닫기 버튼 */}
+                                    <div className="relative bg-[#1a1a1a] rounded-2xl max-w-lg w-full overflow-hidden">
                                         <button
                                             onClick={() => setShowModal(false)}
                                             className="absolute top-4 right-4 text-gray-600 hover:text-gray-400 text-2xl"
@@ -798,20 +186,17 @@ export default function TerminalBuildHero() {
                                             ✕
                                         </button>
 
-                                        {/* 제목 */}
                                         <div className="text-center pt-8 pb-4 border-b border-white/10">
                                             <h2 className="text-2xl font-bold text-[#ff486f] tracking-tight">
-                                                빠른 견적 받기
+                                                {t.modalTitle}
                                             </h2>
                                             <p className="text-sm text-gray-400 mt-1">
-                                                몇 가지 질문에 답하면 맞춤 견적을 안내해드려요 💡
+                                                {t.modalDesc}
                                             </p>
                                         </div>
 
-                                        {/* EstimateWizard 삽입 */}
                                         <EstimateWizard
                                             onFinish={() => {
-                                                // alert("답변이 전송되었습니다! 감사합니다 💡");
                                                 setShowModal(false);
                                             }}
                                         />
@@ -832,90 +217,49 @@ export default function TerminalBuildHero() {
                         variants={fadeUp}
                     >
                         <h2 className="text-3xl md:text-4xl font-black mb-3 text-[#111113]">
-                            자주 묻는 질문
+                            {t.faqTitle}
                         </h2>
                         <p className="text-gray-500 text-base md:text-lg">
-                            개발 전 꼭 알아두면 좋은 내용들을 모았습니다.
+                            {t.faqDesc}
                         </p>
                     </motion.div>
 
-                    {/* FAQ Cards */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 container mx-auto max-w-6xl">
-                        {[
-                            {
-                                q: "Roomi Studio는 어떤 서비스를 제공하나요?",
-                                a: "아이디어만 있어도 시작할 수 있는 MVP 개발 전문 서비스입니다. 웹, 앱, AI 등 빠르게 실행 가능한 프로토타입을 제작해드립니다.",
-                            },
-                            {
-                                q: "상담은 어떻게 진행되나요?",
-                                a: "‘간편 견적’ 버튼을 눌러 간단히 정보를 남겨주시면, 담당자가 1영업일 내로 직접 연락드립니다.",
-                            },
-                            {
-                                q: "견적은 무료인가요?",
-                                a: "네, 무료로 상담과 견적을 제공합니다. 프로젝트 방향이 확정되기 전까지는 어떠한 비용도 발생하지 않습니다.",
-                            },
-                            {
-                                q: "개발 기간은 얼마나 걸리나요?",
-                                a: "일반적인 MVP 기준으로 약 2~4주 내 완성됩니다. 기능 복잡도에 따라 조정이 가능하며, 주 단위로 진행 상황을 공유합니다.",
-                            },
-                            {
-                                q: "디자인까지 포함되나요?",
-                                a: "네, 기획·디자인·개발까지 모두 포함된 올인원 패키지를 제공합니다. 디자인만 별도로 진행하는 것도 가능합니다.",
-                            },
-                            {
-                                q: "런칭 후 유지보수는 어떻게 되나요?",
-                                a: "배포 후 6개월간 무료 버그 수정 및 안정화 지원을 제공합니다. 이후에도 정기 유지보수 또는 개선 계약이 가능합니다.",
-                            },
-                            {
-                                q: "기존 프로젝트를 이어서 맡길 수 있나요?",
-                                a: "네, 가능합니다. 기존 소스코드나 디자인 시안을 검토 후 빠르게 이어받아 진행할 수 있습니다.",
-                            },
-                            {
-                                q: "계약은 어떤 방식으로 진행되나요?",
-                                a: "상담 후 확정 견적서를 발행하고 전자 서명으로 계약합니다. 이후 바로 개발이 시작됩니다.",
-                            },
-                            {
-                                q: "비용은 어느 정도인가요?",
-                                a: "간단한 MVP는 200만 원대부터 시작하며, 요구 기능에 따라 유연하게 맞춤 견적을 드립니다.",
-                            },
-                            // {
-                            //     q: "긴급 프로젝트도 가능한가요?",
-                            //     a: "네. 일정에 따라 최대한 빠르게 착수할 수 있으며, 평균적으로 24시간 내 착수 여부를 안내드립니다.",
-                            // },
-                        ].map((faq, index) => (
-                            <motion.div
-                                key={index}
-                                className="group p-6 sm:p-7 rounded-2xl bg-white border border-gray-200 hover:shadow-[0_0_15px_rgba(255,72,111,0.15)] hover:border-[#ff486f40] transition-all duration-300"
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true }}
-                                variants={fadeUp}
-                            >
-                                <h4 className="font-semibold text-lg md:text-xl text-gray-900 mb-2 group-hover:text-[#ff486f] transition-colors">
-                                    {faq.q}
-                                </h4>
-                                <p className="text-gray-600 text-sm md:text-base leading-relaxed">
-                                    {faq.a}
-                                </p>
-                            </motion.div>
-                        ))}
+                        {Array.isArray(t.faq) &&
+                            t.faq.map((faq, index) => (
+                                <motion.div
+                                    key={index}
+                                    className="group p-6 sm:p-7 rounded-2xl bg-white border border-gray-200 hover:shadow-[0_0_15px_rgba(255,72,111,0.15)] hover:border-[#ff486f40] transition-all duration-300"
+                                    initial="hidden"
+                                    whileInView="visible"
+                                    viewport={{ once: true }}
+                                    variants={fadeUp}
+                                >
+                                    <h4 className="font-semibold text-lg md:text-xl text-gray-900 mb-2 group-hover:text-[#ff486f] transition-colors">
+                                        {faq.q}
+                                    </h4>
+                                    <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+                                        {faq.a}
+                                    </p>
+                                </motion.div>
+                            ))}
                     </div>
                 </section>
-                {/*hidden md:block*/}
+
                 <footer className="hidden md:block snap-start h-auto min-h-[40vh]">
-                    <Footer/>
+                    <Footer />
                 </footer>
-                {/* ✅ floating button 추가 */}
+
+                {/* ✅ Floating Button */}
                 <motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setShowModal(true)}
                     className="fixed bottom-6 right-6 z-50 px-6 py-4 bg-[#ff486f] text-white font-bold rounded-full shadow-[0_0_25px_#ff486f70] hover:shadow-[0_0_40px_#ff486fb0] transition-all duration-300 flex items-center gap-2"
                 >
-                    간편 견적
+                    {t.quickQuote}
                 </motion.button>
             </div>
-
         </>
     );
 }
